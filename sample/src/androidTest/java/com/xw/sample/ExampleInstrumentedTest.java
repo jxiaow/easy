@@ -1,4 +1,4 @@
-package com.xiaowu.easyutils;
+package com.xw.sample;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.xiaowu.easyutils", appContext.getPackageName());
+        assertEquals("com.xw.sample", appContext.getPackageName());
     }
 }

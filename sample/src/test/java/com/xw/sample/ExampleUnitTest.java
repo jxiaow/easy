@@ -1,4 +1,4 @@
-package com.xiaowu.easyutils;
+package com.xw.sample;
 
 import org.junit.Test;
 
