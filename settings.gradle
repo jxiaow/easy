@@ -1,1 +1,1 @@
-include ':easyutilities', ':sample'
+include ':easyutil', ':sample'

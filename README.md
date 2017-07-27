@@ -10,6 +10,8 @@
 
 * CollectionUtil 集合操作类
 
+* ToastUtil 吐司工具类
+
 使用方式：
 
 在Application中，初始化
