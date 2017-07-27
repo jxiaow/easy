@@ -17,3 +17,8 @@
 在Application中，初始化
 
 	Easy.init(Context context);
+	
+	
+Gradle:
+
+    compile 'com.bncggle:easyutil:1.0.1'
