@@ -42,8 +42,19 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH mm ss");
 
-    private String logDir = Environment.getExternalStorageDirectory() + "/crash/";
 
+    private String root = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+    private String logDir = "/crash/";
+
+    /**
+     * 设置日志产生的目录
+     *
+     * @param packageName
+     */
+    public void setLogDir(String packageName) {
+        this.logDir = logDir;
+    }
 
     private CrashHandler() {
 
@@ -54,10 +65,11 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     }
 
 
-    public void init(Context ctx) {
+    public CrashHandler init(Context ctx) {
         this.mContext = ctx;
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
+        return mInstance;
     }
 
     @Override
@@ -128,7 +140,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             }
 
             try {
-                FileOutputStream fos = new FileOutputStream(logDir + fileName);
+                FileOutputStream fos = new FileOutputStream(root + logDir + fileName);
                 fos.write(sb.toString().getBytes());
                 fos.flush();
                 fos.close();
