@@ -56,7 +56,7 @@ public class E {
      */
     public E setDebug(boolean isDebug) {
         if (isDebug) {
-            LogUtil.setLevel(LogUtil.LEVEL_VERBOSE);
+            LogUtil.setLevel(LogUtil.LEVEL_ERROR);
         } else {
             LogUtil.setLevel(LogUtil.LEVEL_NONE);
         }

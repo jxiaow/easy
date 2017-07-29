@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
@@ -45,7 +46,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     private String root = Environment.getExternalStorageDirectory().getAbsolutePath();
 
-    private String logDir = "/crash/";
+    private String logDir = "crash";
 
     /**
      * 设置日志产生的目录
@@ -73,7 +74,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     }
 
     @Override
-    public void uncaughtException(Thread t, Throwable e) {
+    public synchronized void uncaughtException(Thread t, Throwable e) {
 
         if (mDefaultHandler != null && !handleException(e)) {
             mDefaultHandler.uncaughtException(t, e);
@@ -83,8 +84,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
             }
-            android.os.Process.killProcess(android.os.Process.myPid());
-            System.exit(1);
+              killProcess();
         }
     }
 
@@ -123,9 +123,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         Throwable cause = e.getCause();
         while (cause != null) {
             e.printStackTrace(printWriter);
-            cause = e.getCause();
+            cause = cause.getCause();
         }
-
         printWriter.close();
 
         sb.append(sw.toString());
@@ -134,24 +133,32 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         String date = dateFormat.format(new Date());
         String fileName = "crash-" + date + "-" + timestamp + ".log";
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            File file = new File(fileName);
+            File file = new File(root + (root.endsWith("/") ? "" : "/") + logDir + "/crash/");
             if (!file.exists()) {
                 file.mkdirs();
             }
 
             try {
-                FileOutputStream fos = new FileOutputStream(root + logDir + fileName);
+                FileOutputStream fos = new FileOutputStream(file.getAbsolutePath()
+                        + (file.getAbsolutePath().endsWith("/") ? "" : "/") + fileName);
                 fos.write(sb.toString().getBytes());
                 fos.flush();
                 fos.close();
                 return fileName;
             } catch (IOException e1) {
-                e1.printStackTrace();
+                //e1.printStackTrace();
+                // killProcess();
             }
 
         }
         return null;
 
+    }
+
+    private void killProcess() {
+        ActivityCollection.finishAll();
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 
     private void collectDeviceInfo() {

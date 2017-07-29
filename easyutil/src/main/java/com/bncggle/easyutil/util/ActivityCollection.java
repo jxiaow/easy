@@ -18,7 +18,14 @@ public class ActivityCollection {
         }
     }
 
-    public static void add(Activity activity){
+    public static void add(Activity activity) {
         sActivityList.add(activity);
+    }
+
+    public static void finishAll() {
+        for (Activity activity : sActivityList) {
+            activity.finish();
+        }
+        sActivityList.clear();
     }
 }

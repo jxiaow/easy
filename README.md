@@ -21,4 +21,4 @@
 	
 Gradle:
 
-    compile 'com.bncggle:easyutil:1.0.1'
+    compile 'com.bncggle:easyutil:1.0.3'
