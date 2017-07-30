@@ -12,13 +12,13 @@ import java.util.List;
 public class ActivityCollection {
     private static List<Activity> sActivityList = new ArrayList<>();
 
-    public static void remove(Activity activity) {
+    public synchronized void remove(Activity activity) {
         if (sActivityList.contains(activity)) {
             sActivityList.remove(activity);
         }
     }
 
-    public static void add(Activity activity) {
+    public synchronized static void add(Activity activity) {
         sActivityList.add(activity);
     }
 
@@ -27,5 +27,12 @@ public class ActivityCollection {
             activity.finish();
         }
         sActivityList.clear();
+    }
+
+    public static Activity getCurrentActivity() {
+        if (sActivityList.isEmpty()) {
+            throw new RuntimeException("you has not add Activity");
+        }
+        return sActivityList.get(sActivityList.size() - 1);
     }
 }

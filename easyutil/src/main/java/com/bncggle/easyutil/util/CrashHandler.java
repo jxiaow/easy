@@ -6,8 +6,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Looper;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -51,9 +49,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     /**
      * 设置日志产生的目录
      *
-     * @param packageName
+     * @param logDir
      */
-    public void setLogDir(String packageName) {
+    public void setLogDir(String logDir) {
         this.logDir = logDir;
     }
 
@@ -84,7 +82,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
             }
-              killProcess();
+            killProcess();
         }
     }
 
@@ -97,7 +95,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             @Override
             public void run() {
                 Looper.prepare();
-                Toast.makeText(mContext, "程序出现错误，即将退出！", Toast.LENGTH_LONG).show();
+                ToastUtil.showMsg("程序出现错误，即将退出！");
                 Looper.loop();
             }
         }.start();

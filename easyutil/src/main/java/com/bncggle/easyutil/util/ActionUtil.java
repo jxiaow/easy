@@ -12,7 +12,7 @@ import com.bncggle.easyutil.E;
 public class ActionUtil {
 
     public static <T> void actionStart(Class<T> tClass) {
-        Intent intent = new Intent(E.getContext(), tClass);
-        E.getContext().startActivity(intent);
+        Intent intent = new Intent(ActivityCollection.getCurrentActvity(), tClass);
+        ActivityCollection.getCurrentActvity().startActivity(intent);
     }
 }
