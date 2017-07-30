@@ -12,7 +12,7 @@ import java.util.List;
 public class ActivityCollection {
     private static List<Activity> sActivityList = new ArrayList<>();
 
-    public synchronized void remove(Activity activity) {
+    public synchronized static void remove(Activity activity) {
         if (sActivityList.contains(activity)) {
             sActivityList.remove(activity);
         }

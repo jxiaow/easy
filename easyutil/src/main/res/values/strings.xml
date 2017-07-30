@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">EasyUtilities</string>
+    <string name="app_name">EasyUtil</string>
+    <string name="loading">loading...</string>
 </resources>

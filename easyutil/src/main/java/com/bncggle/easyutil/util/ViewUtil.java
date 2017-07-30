@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.bncggle.easyutil.E;
+import com.bncggle.easyutil.util.LogUtil;
 
 /**
  * Created by xw on 2017/7/27.
