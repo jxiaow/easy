@@ -12,6 +12,15 @@
 
 * ToastUtil 吐司工具类
 
+* PermissionsHelper 简单的权限封装
+
+* CustomProgressDialog 自定义dialog
+
+* TitleView 自定义titleView对ToolBar进行封装
+
+* NoticeAngle 角标View
+
+
 使用方式：
 
 在Application中，初始化

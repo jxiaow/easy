@@ -36,7 +36,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     private Context mContext;
 
     //存放设备信息
-    private Map<String, String> infos = new HashMap<String, String>();
+    private Map<String, String> infos = new HashMap<>();
 
 
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH mm ss");
@@ -135,7 +135,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             if (!file.exists()) {
                 file.mkdirs();
             }
-
             try {
                 FileOutputStream fos = new FileOutputStream(file.getAbsolutePath()
                         + (file.getAbsolutePath().endsWith("/") ? "" : "/") + fileName);
@@ -160,8 +159,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     }
 
     private void collectDeviceInfo() {
-
         try {
+            infos.clear();
             PackageManager pm = mContext.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(mContext.getPackageName(), PackageManager.GET_ACTIVITIES);
             String versionName = pi.versionName == null ? "null" : pi.versionName;

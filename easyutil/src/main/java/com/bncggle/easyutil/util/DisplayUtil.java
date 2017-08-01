@@ -1,7 +1,6 @@
 package com.bncggle.easyutil.util;
 
 import com.bncggle.easyutil.E;
-import com.bncggle.easyutil.E;
 
 /**
  * Created by xiaowu on 2017/3/17.
@@ -21,4 +20,13 @@ public class DisplayUtil {
         return (int) (pxValue / density + 0.5f);
     }
 
+    public static int sp2px(float spValue) {
+        float scaledDensity = E.getContext().getResources().getDisplayMetrics().scaledDensity;
+        return (int) (spValue * scaledDensity + 0.5f);
+    }
+
+    public static int px2sp(float pxValue) {
+        float scaledDensity = E.getContext().getResources().getDisplayMetrics().scaledDensity;
+        return (int) (pxValue / scaledDensity + 0.5f);
+    }
 }
