@@ -31,7 +31,7 @@ public class E {
     /**
      * get Context
      *
-     * @return
+     * @return Context
      */
     public static Context getContext() {
         return sContext;
@@ -41,7 +41,7 @@ public class E {
      * start CrashHandler
      *
      * @param packName the packageName folder contains crash file
-     * @return
+     * @return E instance
      */
     public E crashHandler(String packName) {
         CrashHandler.getInstance().init(sContext).setLogDir(packName);
@@ -52,7 +52,7 @@ public class E {
      * set log level
      *
      * @param isDebug true debug, or realease
-     * @return
+     * @return E instance
      */
     public E setDebug(boolean isDebug) {
         if (isDebug) {

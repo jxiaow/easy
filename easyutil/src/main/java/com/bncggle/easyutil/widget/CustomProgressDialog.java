@@ -40,7 +40,7 @@ public class CustomProgressDialog extends Dialog {
     }
 
     private void init() {
-        this.setCancelable(false);
+        this.setCancelable(true);
         this.setCanceledOnTouchOutside(false);
         contentView = LayoutInflater.from(mContext).inflate(R.layout.custom_dialog, null);
         //WindowManager.LayoutParams attributes = getWindow().getAttributes();
