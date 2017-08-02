@@ -79,9 +79,9 @@ public class TitleView extends RelativeLayout {
         mTitle.setText(titleValue);
         mTitle.setTextColor(titleTextColor);
         mTitle.setTextSize(DisplayUtil.px2sp(textSize));
-		if(resId != -1){
-			mToolbar.setNavigationIcon(resId);
-		}
+	if(resId != -1){
+	   mToolbar.setNavigationIcon(resId);
+	}
    
         mToolbar.setBackgroundResource(backgroundId);
     }
