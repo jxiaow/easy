@@ -3,6 +3,9 @@ package com.bncggle.easyutil.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.support.annotation.DrawableRes;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -48,6 +51,12 @@ public class TitleView extends RelativeLayout {
         initAttrs();
     }
 
+    @Override
+    public void setBackgroundResource(@DrawableRes int resid) {
+        mToolbar.setBackgroundResource(resid);
+    }
+
+
     public void setActionBar(AppCompatActivity activity, boolean isShowBack) {
         activity.setSupportActionBar(mToolbar);
         ActionBar supportActionBar = activity.getSupportActionBar();
@@ -75,21 +84,25 @@ public class TitleView extends RelativeLayout {
         int titleTextColor = typedArray.getColor(R.styleable.TitleView_title_text_color, Color.WHITE);
         int resId = typedArray.getResourceId(R.styleable.TitleView_backIcon, -1);
         float textSize = typedArray.getDimension(R.styleable.TitleView_titleTextSize, 15);
-        int backgroundId = typedArray.getResourceId(R.styleable.TitleView_title_background, android.R.color.white);
+        int backgroundId = typedArray.getResourceId(R.styleable.TitleView_title_background, -1);
         mTitle.setText(titleValue);
         mTitle.setTextColor(titleTextColor);
         mTitle.setTextSize(DisplayUtil.px2sp(textSize));
-	if(resId != -1){
-	   mToolbar.setNavigationIcon(resId);
-	}
-   
-        mToolbar.setBackgroundResource(backgroundId);
+        if (resId != -1) {
+            mToolbar.setNavigationIcon(resId);
+        }
+        if(backgroundId == -1){
+            mToolbar.setBackgroundDrawable(this.getBackground());
+        }else{
+            mToolbar.setBackgroundResource(backgroundId);
+        }
+
     }
 
     private void initView() {
         View view = LayoutInflater.from(mContext).inflate(R.layout.title_layout, this, true);
         mToolbar = (Toolbar) view.findViewById(R.id.tool_bar);
-        mTitle = (TextView) view.findViewById(R.id.title);
+        mTitle = (TextView) view.findViewById(R.id.title_text);
         mToolbar.setTitle("");
     }
 
