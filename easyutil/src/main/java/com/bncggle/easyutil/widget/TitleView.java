@@ -73,13 +73,16 @@ public class TitleView extends RelativeLayout {
         TypedArray typedArray = mContext.obtainStyledAttributes(mAttrs, R.styleable.TitleView);
         String titleValue = typedArray.getString(R.styleable.TitleView_title);
         int titleTextColor = typedArray.getColor(R.styleable.TitleView_title_text_color, Color.WHITE);
-        int resId = typedArray.getResourceId(R.styleable.TitleView_backIcon, android.R.id.home);
+        int resId = typedArray.getResourceId(R.styleable.TitleView_backIcon, -1);
         float textSize = typedArray.getDimension(R.styleable.TitleView_titleTextSize, 15);
         int backgroundId = typedArray.getResourceId(R.styleable.TitleView_title_background, android.R.color.white);
         mTitle.setText(titleValue);
         mTitle.setTextColor(titleTextColor);
         mTitle.setTextSize(DisplayUtil.px2sp(textSize));
-        mToolbar.setNavigationIcon(resId);
+		if(resId != -1){
+			mToolbar.setNavigationIcon(resId);
+		}
+   
         mToolbar.setBackgroundResource(backgroundId);
     }
 
