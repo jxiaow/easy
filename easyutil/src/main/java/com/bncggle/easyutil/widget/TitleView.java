@@ -3,9 +3,8 @@ package com.bncggle.easyutil.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.DrawableRes;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +28,7 @@ public class TitleView extends RelativeLayout {
     private TextView mTitle;
     private Context mContext;
     private AttributeSet mAttrs;
+    private AppCompatActivity mActivity;
 
     public TitleView(Context context) {
         this(context, null);
@@ -58,6 +58,7 @@ public class TitleView extends RelativeLayout {
 
 
     public void setActionBar(AppCompatActivity activity, boolean isShowBack) {
+        mActivity = activity;
         activity.setSupportActionBar(mToolbar);
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
@@ -78,6 +79,16 @@ public class TitleView extends RelativeLayout {
         mToolbar.setNavigationOnClickListener(clickListener);
     }
 
+    public void setBackMenuToFinish() {
+        mToolbar.setNavigationOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mActivity.finish();
+            }
+        });
+    }
+
+
     private void initAttrs() {
         TypedArray typedArray = mContext.obtainStyledAttributes(mAttrs, R.styleable.TitleView);
         String titleValue = typedArray.getString(R.styleable.TitleView_title);
@@ -91,9 +102,13 @@ public class TitleView extends RelativeLayout {
         if (resId != -1) {
             mToolbar.setNavigationIcon(resId);
         }
-        if(backgroundId == -1){
-            mToolbar.setBackgroundDrawable(this.getBackground());
-        }else{
+        if (backgroundId == -1) {
+            if (Build.VERSION.SDK_INT > 16) {
+                mToolbar.setBackground(this.getBackground());
+            } else {
+                mToolbar.setBackgroundDrawable(this.getBackground());
+            }
+        } else {
             mToolbar.setBackgroundResource(backgroundId);
         }
 
