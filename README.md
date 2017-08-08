@@ -31,4 +31,18 @@
 	
 Gradle:
 
-    compile 'com.bncggle:easyutil:last.version'
+* jcenter:
+
+    	compile 'com.bncggle:easyutil:last.version'
+
+* JitPack 
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+	
+	
+	compile 'com.github.xiaowu-zhu:EasyUtils:releases'
