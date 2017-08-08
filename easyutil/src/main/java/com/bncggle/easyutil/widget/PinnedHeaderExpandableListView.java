@@ -31,12 +31,12 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
     private int mHeaderViewWidth;
 
     private int mHeaderViewHeight;
-    
+
     private float mDownX;
     private float mDownY;
-    
+
     private int mOldState = -1;
-    
+
     public PinnedHeaderExpandableListView(Context context) {
         this(context, null);
     }
@@ -99,7 +99,7 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
         this.setSelectedGroup(groupPosition);
     }
 
-    
+
     /**
      * 如果 HeaderView 是可见的 , 此函数用于判断是否点击了 HeaderView, 并对做相应的处理 ,
      * 因为 HeaderView 是画上去的 , 所以设置事件监听是无效的 , 只有自行控制 .
@@ -139,7 +139,6 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
 
     }
 
-   
 
     /**
      * 点击了 Group 触发的事件 , 要根据根据当前点击 Group 的状态来
@@ -169,7 +168,7 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
         }
     }
 
-    
+
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);

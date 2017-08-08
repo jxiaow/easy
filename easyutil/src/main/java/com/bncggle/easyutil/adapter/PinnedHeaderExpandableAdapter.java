@@ -8,7 +8,6 @@ import android.widget.BaseExpandableListAdapter;
 
 import java.util.List;
 
-import cn.com.bnc.ginms.widget.HeaderAdapter;
 
 /**
  * Created by xw on 2017/8/8.
@@ -152,8 +151,6 @@ public abstract class PinnedHeaderExpandableAdapter<T, V> extends BaseExpandable
     public abstract void onBindGroupViewHolder(ViewHolder groupHolder, boolean isExpanded, T t);
 
     public abstract void onBindChildViewHolder(ViewHolder childHolder, V v, boolean isLastChild);
-
-
 
 
 }
