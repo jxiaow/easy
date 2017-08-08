@@ -36,7 +36,7 @@ publish {
     userOrg = 'bncggle'//bintray.com用户名
     groupId = 'com.bncggle'//jcenter上的路径
     artifactId = 'easyutil'//项目名称
-    publishVersion = '1.0.4'//版本号
+    publishVersion = '1.0.5'//版本号
     desc = 'easyutil'//描述，不重要
     website = 'https://github.com/xiaowu-zhu/EasyUtils'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 

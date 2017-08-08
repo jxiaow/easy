@@ -43,7 +43,6 @@ public class TitleView extends RelativeLayout {
         init(context, attrs);
     }
 
-
     private void init(Context context, AttributeSet attrs) {
         this.mContext = context;
         this.mAttrs = attrs;
