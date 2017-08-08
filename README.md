@@ -20,6 +20,7 @@
 
 * NoticeAngle 角标View
 
+* PinnedHeaderExpandableListView及其Adapter
 
 使用方式：
 
