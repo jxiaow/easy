@@ -26,7 +26,7 @@
 
 在Application中，初始化
 
-	Easy.init(Context context);
+	E.init(Context context);
 	
 	
 Gradle:
@@ -37,12 +37,12 @@ Gradle:
 
 * JitPack 
 
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
-	
-	
-	compile 'com.github.xiaowu-zhu:EasyUtils:releases'
+        allprojects {
+            repositories {
+                ...
+                maven { url 'https://jitpack.io' }
+            }
+        }
+        
+        
+        compile 'com.github.xiaowujiang:EasyUtils:releases'
