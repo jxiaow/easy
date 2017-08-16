@@ -6,13 +6,14 @@ package com.bncggle.easyutil;
 
 import android.content.Context;
 
-import com.bncggle.easyutil.util.CrashHandler;
+import com.bncggle.easyutil.helper.CrashHelper;
+import com.bncggle.easyutil.util.ActivityManger;
 import com.bncggle.easyutil.util.LogUtil;
 
 /**
  * easyutil-core
  */
-public class E {
+public final class E {
 
     private static Context sContext;
     private static E sE = new E();
@@ -43,8 +44,8 @@ public class E {
      * @param packName the packageName folder contains crash file
      * @return E instance
      */
-    public E crashHandler(String packName) {
-        CrashHandler.getInstance().init(sContext).setLogDir(packName);
+    public E crash(String packName) {
+        CrashHelper.getInstance().init(sContext).setLogDir(packName);
         return sE;
     }
 
@@ -55,12 +56,17 @@ public class E {
      * @return E instance
      */
     public E setDebug(boolean isDebug) {
-        if (isDebug) {
-            LogUtil.setLevel(LogUtil.LEVEL_ERROR);
-        } else {
-            LogUtil.setLevel(LogUtil.LEVEL_NONE);
-        }
+        LogUtil.setDebug(isDebug);
         return sE;
+    }
+
+    /**
+     * Activity管理
+     *
+     * @return
+     */
+    public static ActivityManger activity() {
+        return ActivityManger.getInstance();
     }
 
 }

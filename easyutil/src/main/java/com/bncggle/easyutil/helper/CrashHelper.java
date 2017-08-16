@@ -1,4 +1,4 @@
-package com.bncggle.easyutil.util;
+package com.bncggle.easyutil.helper;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -6,6 +6,9 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Looper;
+
+import com.bncggle.easyutil.util.ActivityManger;
+import com.bncggle.easyutil.util.ToastUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,13 +28,13 @@ import java.util.Map;
  * 程序崩溃处理类
  */
 
-public class CrashHandler implements Thread.UncaughtExceptionHandler {
+public class CrashHelper implements Thread.UncaughtExceptionHandler {
 
 
     //程序崩溃默认处理器
     private Thread.UncaughtExceptionHandler mDefaultHandler;
     //单例
-    private static CrashHandler mInstance = new CrashHandler();
+    private static CrashHelper mInstance = new CrashHelper();
     //程序上下文
     private Context mContext;
 
@@ -55,16 +58,16 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         this.logDir = logDir;
     }
 
-    private CrashHandler() {
+    private CrashHelper() {
 
     }
 
-    public static CrashHandler getInstance() {
+    public static CrashHelper getInstance() {
         return mInstance;
     }
 
 
-    public CrashHandler init(Context ctx) {
+    public CrashHelper init(Context ctx) {
         this.mContext = ctx;
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
@@ -153,7 +156,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     }
 
     private void killProcess() {
-        ActivityCollection.finishAll();
+        ActivityManger.finishAll();
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);
     }

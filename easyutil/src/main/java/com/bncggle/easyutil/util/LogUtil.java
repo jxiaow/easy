@@ -24,6 +24,10 @@ public class LogUtil {
         mLevel = level;
     }
 
+    public static void setDebug(boolean debug) {
+        setLevel(debug ? LEVEL_ERROR : LEVEL_VERBOSE);
+    }
+
     private static String getTag() {
         StackTraceElement call = new Throwable().getStackTrace()[2];
         String tag = "%s.%s (Line: %d)";

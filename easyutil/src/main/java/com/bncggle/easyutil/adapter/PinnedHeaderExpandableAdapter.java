@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 
+import com.bncggle.easyutil.holder.ViewHolder;
+
 import java.util.List;
 
 
@@ -64,7 +66,7 @@ public abstract class PinnedHeaderExpandableAdapter<T, V> extends BaseExpandable
         } else {
             groupHolder = (ViewHolder) convertView.getTag();
         }
-        onBindGroupViewHolder(groupHolder, isExpanded, groupDataList.get(groupPosition));
+        onBindGroupViewHolder(groupHolder, isExpanded, groupDataList.get(groupPosition), groupPosition);
         return convertView;
     }
 
@@ -95,7 +97,7 @@ public abstract class PinnedHeaderExpandableAdapter<T, V> extends BaseExpandable
         } else {
             childHolder = (ViewHolder) convertView.getTag();
         }
-        onBindChildViewHolder(childHolder, getChild(groupPosition, childPosition), isLastChild);
+        onBindChildViewHolder(childHolder, getChild(groupPosition, childPosition), isLastChild, groupPosition, childPosition);
         return convertView;
     }
 
@@ -144,13 +146,14 @@ public abstract class PinnedHeaderExpandableAdapter<T, V> extends BaseExpandable
         onBindHeaderViewHolder(viewHolder, isExpand, groupPosition, childPosition, alpha);
     }
 
+
     public abstract void onBindHeaderViewHolder(ViewHolder headerHolder, boolean isExpand, int groupPosition, int childPosition, int alpha);
 
     public abstract List<V> getChildDataList(int groupPosition);
 
-    public abstract void onBindGroupViewHolder(ViewHolder groupHolder, boolean isExpanded, T t);
+    public abstract void onBindGroupViewHolder(ViewHolder groupHolder, boolean isExpanded, T t, int groupPosition);
 
-    public abstract void onBindChildViewHolder(ViewHolder childHolder, V v, boolean isLastChild);
+    public abstract void onBindChildViewHolder(ViewHolder childHolder, V v, boolean isLastChild, int groupPosition, int childPosition);
 
 
 }

@@ -1,4 +1,4 @@
-package com.bncggle.easyutil.adapter;
+package com.bncggle.easyutil.holder;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
