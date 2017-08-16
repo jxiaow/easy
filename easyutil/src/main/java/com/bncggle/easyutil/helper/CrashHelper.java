@@ -7,7 +7,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Looper;
 
-import com.bncggle.easyutil.util.ActivityManger;
+import com.bncggle.easyutil.E;
 import com.bncggle.easyutil.util.ToastUtil;
 
 import java.io.File;
@@ -156,7 +156,7 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
     }
 
     private void killProcess() {
-        ActivityManger.finishAll();
+        E.activity().finishAll();
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);
     }
