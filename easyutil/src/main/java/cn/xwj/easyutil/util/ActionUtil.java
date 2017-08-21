@@ -16,21 +16,21 @@ public class ActionUtil {
         return new ActionUtil();
     }
 
-    public static <T> void actionStart(Class<T> tClass) {
+    public  <T> void actionStart(Class<T> tClass) {
         if (E.getContext() == null) {
             throw new IllegalStateException("E is not init");
         }
         actionStart(E.getContext(), tClass, null);
     }
 
-    public static <T> void actionStart(Class<T> tClass, Bundle bundle) {
+    public  <T> void actionStart(Class<T> tClass, Bundle bundle) {
         if (E.getContext() == null) {
             throw new IllegalStateException("E is not init");
         }
         actionStart(E.getContext(), tClass, bundle);
     }
 
-    public static <T> void actionStart(Context context, Class<T> tClass, Bundle bundle) {
+    public  <T> void actionStart(Context context, Class<T> tClass, Bundle bundle) {
         if (context == null) {
             throw new IllegalArgumentException("Context context is null");
         }
