@@ -7,6 +7,7 @@ package cn.xwj.easyutil;
 import android.content.Context;
 
 import cn.xwj.easyutil.helper.CrashHelper;
+import cn.xwj.easyutil.util.ActionUtil;
 import cn.xwj.easyutil.util.ActivityManger;
 import cn.xwj.easyutil.util.LogUtil;
 
@@ -69,4 +70,7 @@ public final class E {
         return ActivityManger.getInstance();
     }
 
+    public static ActionUtil action() {
+        return ActionUtil.getInstance();
+    }
 }

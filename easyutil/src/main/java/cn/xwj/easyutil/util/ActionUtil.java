@@ -1,6 +1,8 @@
 package cn.xwj.easyutil.util;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
 import cn.xwj.easyutil.E;
 
@@ -10,8 +12,32 @@ import cn.xwj.easyutil.E;
 
 public class ActionUtil {
 
+    public static ActionUtil getInstance() {
+        return new ActionUtil();
+    }
+
     public static <T> void actionStart(Class<T> tClass) {
-        Intent intent = new Intent(E.activity().getCurrentActivity(), tClass);
-        E.activity().getCurrentActivity().startActivity(intent);
+        if (E.getContext() == null) {
+            throw new IllegalStateException("E is not init");
+        }
+        actionStart(E.getContext(), tClass, null);
+    }
+
+    public static <T> void actionStart(Class<T> tClass, Bundle bundle) {
+        if (E.getContext() == null) {
+            throw new IllegalStateException("E is not init");
+        }
+        actionStart(E.getContext(), tClass, bundle);
+    }
+
+    public static <T> void actionStart(Context context, Class<T> tClass, Bundle bundle) {
+        if (context == null) {
+            throw new IllegalArgumentException("Context context is null");
+        }
+        Intent intent = new Intent(context, tClass);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        context.startActivity(intent);
     }
 }
