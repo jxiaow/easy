@@ -30,6 +30,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    //compile project(':easyutil')
-    compile 'com.github.xiaowujiang:EasyUtils:1.0.1'
+    compile project(':easyutil')
 }

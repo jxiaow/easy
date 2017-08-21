@@ -10,7 +10,6 @@ import android.util.Log;
 
 public class LogUtil {
 
-
     public static final int LEVEL_NONE = 0;
     public static final int LEVEL_VERBOSE = 1;
     public static final int LEVEL_DEBUG = 2;

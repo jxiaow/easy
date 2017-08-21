@@ -33,11 +33,19 @@ public class PermissionsHelper {
     }
 
 
-    public void shouldShowRequestPermissionRationale(String permission, int requestCode) {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(mActivity, permission)) {
-            showPermissionConfigDialog(permission);
+    public void shouldShowRequestPermissionRationale(int requestCode, String... permissions) {
+        boolean isNeed = false;
+        for (String permission : permissions) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(mActivity, permission)) {
+                isNeed = true;
+                break;
+            }
+        }
+
+        if (isNeed) {
+            showPermissionConfigDialog(permissions);
         } else {
-            requestPermission(requestCode, permission);
+            requestPermission(requestCode, permissions);
         }
     }
 
@@ -46,10 +54,10 @@ public class PermissionsHelper {
         ActivityCompat.requestPermissions(mActivity, permissions, code);
     }
 
-    public void showPermissionConfigDialog(final String permission) {
+    public void showPermissionConfigDialog(final String... permissions) {
         final AlertDialog dialog = new AlertDialog.Builder(mActivity)
                 .setTitle("权限设置")
-                .setMessage("亲, 您拒绝了读写内存卡的权限，需要您去开启")
+                .setMessage("亲, 您拒绝了权限，需要您授予")
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -59,12 +67,11 @@ public class PermissionsHelper {
                 }).setPositiveButton("授予", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        requestPermission(mRequestCode, permission);
+                        requestPermission(mRequestCode, permissions);
                         //Intent intent = new Intent();
                         // intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                         // intent.setData(Uri.parse("package:" + mActivity.getPackageName()));
                         // mActivity.startActivity(intent);
-
                         dialog.dismiss();
                     }
                 }).create();

@@ -12,7 +12,6 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupClickListener;
-
 import cn.xwj.easyutil.adapter.HeaderAdapter;
 
 public class PinnedHeaderExpandableListView extends ExpandableListView implements OnScrollListener, OnGroupClickListener {
@@ -49,7 +48,6 @@ public class PinnedHeaderExpandableListView extends ExpandableListView implement
         super(context, attrs, defStyle);
         registerListener();
     }
-
 
     public void setHeaderView(Context context, int layoutId) {
         View view = LayoutInflater.from(context).inflate(layoutId, this, false);

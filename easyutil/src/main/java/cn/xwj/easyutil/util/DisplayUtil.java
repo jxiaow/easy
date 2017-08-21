@@ -10,7 +10,6 @@ import cn.xwj.easyutil.E;
 public class DisplayUtil {
 
     public static int dp2px(float dpValue) {
-
         float density = E.getContext().getResources().getDisplayMetrics().density;
         return (int) (dpValue * density + 0.5f);
     }

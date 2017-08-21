@@ -2,7 +2,8 @@ package cn.xwj.sample.app;
 
 import android.app.Application;
 
-import com.bncggle.easyutil.E;
+import cn.xwj.easyutil.E;
+
 
 /**
  * Created by xw on 2017/7/27.

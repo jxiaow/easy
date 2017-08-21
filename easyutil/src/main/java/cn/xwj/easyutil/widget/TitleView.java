@@ -50,8 +50,8 @@ public class TitleView extends RelativeLayout {
     }
 
     @Override
-    public void setBackgroundResource(@DrawableRes int resid) {
-        mToolbar.setBackgroundResource(resid);
+    public void setBackgroundResource(@DrawableRes int resId) {
+        mToolbar.setBackgroundResource(resId);
     }
 
 
@@ -86,13 +86,12 @@ public class TitleView extends RelativeLayout {
         });
     }
 
-
     private void initAttrs() {
         TypedArray typedArray = mContext.obtainStyledAttributes(mAttrs, cn.xwj.easyutil.R.styleable.TitleView);
         String titleValue = typedArray.getString(cn.xwj.easyutil.R.styleable.TitleView_title);
         int titleTextColor = typedArray.getColor(cn.xwj.easyutil.R.styleable.TitleView_title_text_color, Color.WHITE);
         int resId = typedArray.getResourceId(cn.xwj.easyutil.R.styleable.TitleView_backIcon, -1);
-        float textSize = typedArray.getDimension(cn.xwj.easyutil.R.styleable.TitleView_titleTextSize, 15);
+        float textSize = typedArray.getDimension(cn.xwj.easyutil.R.styleable.TitleView_titleTextSize, DisplayUtil.sp2px(15));
         int backgroundId = typedArray.getResourceId(cn.xwj.easyutil.R.styleable.TitleView_title_background, -1);
         mTitle.setText(titleValue);
         mTitle.setTextColor(titleTextColor);
@@ -126,4 +125,5 @@ public class TitleView extends RelativeLayout {
     public Toolbar getToolbar() {
         return mToolbar;
     }
+
 }

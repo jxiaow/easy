@@ -1,5 +1,6 @@
 package cn.xwj.easyutil.util;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
@@ -15,7 +16,7 @@ import cn.xwj.easyutil.E;
 
 public class ViewUtil {
 
-    public static void setTransparentStatusBar(AppCompatActivity activity) {
+    public static void setTransparentStatusBar(Activity activity) {
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = activity.getWindow().getDecorView();
             if (decorView != null) {
