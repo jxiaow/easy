@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 //jcenter
-//apply plugin: 'com.novoda.bintray-release'//添加
+apply plugin: 'com.novoda.bintray-release'//添加
 // jitpack
 apply plugin: 'com.github.dcendents.android-maven'
 
@@ -66,13 +66,12 @@ artifacts {
     archives javadocJar
 }
 /***********************************************Jcenter配置*****************************************/
-//////添加
-//publish {
-//    userOrg = 'bncggle'//bintray.com用户名
-//    groupId = 'cn.xwj'//jcenter上的路径
-//    artifactId = 'easyutil'//项目名称
-//    publishVersion = '1.0.6'//版本号
-//    desc = 'easyutil'//描述，不重要
-//    website = 'https://github.com/xiaowujiang/EasyUtils'//网站，不重要；尽量模拟github上的地址
-//
-//}
+publish {
+    userOrg = 'xiaowujiang'//bintray.com用户名
+    groupId = 'cn.xwj'//jcenter上的路径
+    artifactId = 'easyutils'//项目名称
+    publishVersion = '1.0.3'//版本号
+    desc = 'easyutil'//描述，不重要
+    website = 'https://github.com/xiaowujiang/EasyUtils'//网站，不重要；尽量模拟github上的地址
+
+}

@@ -26,22 +26,4 @@ public class ViewUtil {
             }
         }
     }
-
-    public static void showUpdateDialog(String msg) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(E.getContext());
-        builder.setTitle("升级提示")
-                .setMessage(msg)
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        LogUtil.i("取消了");
-                    }
-                })
-                .setPositiveButton("升级", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        LogUtil.i("升级");
-                    }
-                }).show();
-    }
 }
