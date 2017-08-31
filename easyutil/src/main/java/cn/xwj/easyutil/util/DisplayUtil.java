@@ -10,22 +10,22 @@ import cn.xwj.easyutil.E;
 public class DisplayUtil {
 
     public static int dp2px(float dpValue) {
-        float density = E.getContext().getResources().getDisplayMetrics().density;
+        float density = E.context().getResources().getDisplayMetrics().density;
         return (int) (dpValue * density + 0.5f);
     }
 
     public static int px2dp(float pxValue) {
-        float density = E.getContext().getResources().getDisplayMetrics().density;
+        float density = E.context().getResources().getDisplayMetrics().density;
         return (int) (pxValue / density + 0.5f);
     }
 
     public static int sp2px(float spValue) {
-        float scaledDensity = E.getContext().getResources().getDisplayMetrics().scaledDensity;
+        float scaledDensity = E.context().getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * scaledDensity + 0.5f);
     }
 
     public static int px2sp(float pxValue) {
-        float scaledDensity = E.getContext().getResources().getDisplayMetrics().scaledDensity;
+        float scaledDensity = E.context().getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / scaledDensity + 0.5f);
     }
 }

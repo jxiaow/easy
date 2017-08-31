@@ -4,10 +4,12 @@ package cn.xwj.easyutil;
  * Created by xiaowu on 2017/7/25.
  */
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 
 import cn.xwj.easyutil.helper.CrashHelper;
-import cn.xwj.easyutil.util.ActionUtil;
+import cn.xwj.easyutil.util.Action;
 import cn.xwj.easyutil.util.ActivityManger;
 import cn.xwj.easyutil.util.LogUtil;
 
@@ -15,9 +17,11 @@ import cn.xwj.easyutil.util.LogUtil;
  * easyutil-core
  */
 public final class E {
-
-    private static Context sContext;
+    private static Application sApp;
     private static E sE = new E();
+
+    private E() {
+    }
 
     /**
      * init easyUtil
@@ -25,8 +29,8 @@ public final class E {
      * @param context context
      * @return E new instance
      */
-    public static E init(Context context) {
-        sContext = context;
+    public static E init(Application context) {
+        sApp = context;
         return sE;
     }
 
@@ -35,8 +39,8 @@ public final class E {
      *
      * @return Context
      */
-    public static Context getContext() {
-        return sContext;
+    public static Context context() {
+        return sApp.getApplicationContext();
     }
 
     /**
@@ -46,7 +50,7 @@ public final class E {
      * @return E instance
      */
     public E crash(String packName) {
-        CrashHelper.getInstance().init(sContext).setLogDir(packName);
+        CrashHelper.getInstance().init(context()).setLogDir(packName);
         return sE;
     }
 
@@ -70,7 +74,12 @@ public final class E {
         return ActivityManger.getInstance();
     }
 
-    public static ActionUtil action() {
-        return ActionUtil.getInstance();
+    /**
+     * @param activity
+     * @return
+     */
+    public static Action action(Activity activity) {
+        return Action.getInstance(activity);
     }
+
 }

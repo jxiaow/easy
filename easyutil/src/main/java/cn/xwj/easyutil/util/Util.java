@@ -18,8 +18,8 @@ public class Util {
      *
      * @return
      */
-    public static VersionInfo getVersion() {
-        Context context = E.getContext();
+    public static VersionInfo version() {
+        Context context = E.context();
         PackageManager packageManager = context.getPackageManager();
         try {
             PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_ACTIVITIES);
