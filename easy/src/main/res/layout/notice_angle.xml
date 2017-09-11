@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="85dp"
+    android:layout_height="85dp">
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/default_bg"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_alignBaseline="@id/iv_icon"
+        android:id="@+id/tv_notice_angle"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/notice_angle"
+        android:gravity="center"
+        android:text="1"
+        android:textSize="10dp"/>
+
+</RelativeLayout>

@@ -2,7 +2,7 @@ package cn.xwj.sample.app;
 
 import android.app.Application;
 
-import cn.xwj.easyutil.E;
+import cn.xwj.easy.E;
 
 
 /**
