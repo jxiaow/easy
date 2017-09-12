@@ -11,6 +11,18 @@ import android.view.View;
 
 public class EView {
 
+    private static volatile EView instance;
+
+    private EView() {
+    }
+
+    public synchronized static EView getInstance() {
+        if (instance == null) {
+            instance = new EView();
+        }
+        return instance;
+    }
+
     public void transparentStatusBar(Activity activity) {
         if (Build.VERSION.SDK_INT >= 21 && activity != null) {
             View decorView = activity.getWindow().getDecorView();
@@ -21,4 +33,6 @@ public class EView {
             }
         }
     }
+
+
 }

@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import cn.xwj.easy.util.DisplayUtil;
+import cn.xwj.easy.util.Display;
 
 
 /**
@@ -91,11 +91,11 @@ public class TitleView extends RelativeLayout {
         String titleValue = typedArray.getString(cn.xwj.easy.R.styleable.TitleView_title);
         int titleTextColor = typedArray.getColor(cn.xwj.easy.R.styleable.TitleView_title_text_color, Color.WHITE);
         int resId = typedArray.getResourceId(cn.xwj.easy.R.styleable.TitleView_backIcon, -1);
-        float textSize = typedArray.getDimension(cn.xwj.easy.R.styleable.TitleView_titleTextSize, DisplayUtil.sp2px(15));
+        float textSize = typedArray.getDimension(cn.xwj.easy.R.styleable.TitleView_titleTextSize, Display.sp2px(15));
         int backgroundId = typedArray.getResourceId(cn.xwj.easy.R.styleable.TitleView_title_background, -1);
         mTitle.setText(titleValue);
         mTitle.setTextColor(titleTextColor);
-        mTitle.setTextSize(DisplayUtil.px2sp(textSize));
+        mTitle.setTextSize(Display.px2sp(textSize));
         if (resId != -1) {
             mToolbar.setNavigationIcon(resId);
         }

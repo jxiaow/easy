@@ -84,7 +84,7 @@ public final class E {
     }
 
     public static EView view() {
-        return new EView();
+        return EView.getInstance();
     }
 
 }
