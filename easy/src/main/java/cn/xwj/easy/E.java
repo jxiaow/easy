@@ -5,7 +5,6 @@ package cn.xwj.easy;
  */
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 
 import cn.xwj.easy.helper.CrashHelper;
@@ -18,7 +17,7 @@ import cn.xwj.easy.util.LogUtil;
  * easyutil-core
  */
 public final class E {
-    private static Application sApp;
+    private static Context sContext;
     private static E sE = new E();
 
     private E() {
@@ -27,11 +26,11 @@ public final class E {
     /**
      * init easyUtil
      *
-     * @param app context
+     * @param context context
      * @return E new instance
      */
-    public static E init(Application app) {
-        sApp = app;
+    public static E init(Context context) {
+        sContext = context;
         return sE;
     }
 
@@ -41,7 +40,7 @@ public final class E {
      * @return Context
      */
     public static Context context() {
-        return sApp;
+        return sContext;
     }
 
     /**
@@ -83,7 +82,8 @@ public final class E {
         return Action.getInstance(activity);
     }
 
-    public static EView view() {
+    public static EView view(Context context) {
+        sContext = context;
         return EView.getInstance();
     }
 

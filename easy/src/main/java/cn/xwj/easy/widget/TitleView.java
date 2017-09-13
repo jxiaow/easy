@@ -11,17 +11,18 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import cn.xwj.easy.util.Display;
+import cn.xwj.easy.E;
 
 
 /**
  * Created by xw on 2017/7/7.
  */
 
-public class TitleView extends RelativeLayout {
+public class TitleView extends LinearLayout {
 
     private Toolbar mToolbar;
     private TextView mTitle;
@@ -91,11 +92,11 @@ public class TitleView extends RelativeLayout {
         String titleValue = typedArray.getString(cn.xwj.easy.R.styleable.TitleView_title);
         int titleTextColor = typedArray.getColor(cn.xwj.easy.R.styleable.TitleView_title_text_color, Color.WHITE);
         int resId = typedArray.getResourceId(cn.xwj.easy.R.styleable.TitleView_backIcon, -1);
-        float textSize = typedArray.getDimension(cn.xwj.easy.R.styleable.TitleView_titleTextSize, Display.sp2px(15));
+        float textSize = typedArray.getDimension(cn.xwj.easy.R.styleable.TitleView_titleTextSize, E.view(mContext).sp2px(15));
         int backgroundId = typedArray.getResourceId(cn.xwj.easy.R.styleable.TitleView_title_background, -1);
         mTitle.setText(titleValue);
         mTitle.setTextColor(titleTextColor);
-        mTitle.setTextSize(Display.px2sp(textSize));
+        mTitle.setTextSize(E.view(mContext).px2sp(textSize));
         if (resId != -1) {
             mToolbar.setNavigationIcon(resId);
         }
@@ -108,6 +109,7 @@ public class TitleView extends RelativeLayout {
         } else {
             mToolbar.setBackgroundResource(backgroundId);
         }
+
 
     }
 

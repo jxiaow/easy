@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 
+import cn.xwj.easy.E;
+
 /**
  * Created by xw on 2017/7/27.
  */
@@ -34,5 +36,23 @@ public class EView {
         }
     }
 
+    public static int dp2px(float dpValue) {
+        float density = E.context().getResources().getDisplayMetrics().density;
+        return (int) (dpValue * density + 0.5f);
+    }
 
+    public static int px2dp(float pxValue) {
+        float density = E.context().getResources().getDisplayMetrics().density;
+        return (int) (pxValue / density + 0.5f);
+    }
+
+    public static int sp2px(float spValue) {
+        float scaledDensity = E.context().getResources().getDisplayMetrics().scaledDensity;
+        return (int) (spValue * scaledDensity + 0.5f);
+    }
+
+    public static int px2sp(float pxValue) {
+        float scaledDensity = E.context().getResources().getDisplayMetrics().scaledDensity;
+        return (int) (pxValue / scaledDensity + 0.5f);
+    }
 }
