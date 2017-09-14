@@ -1,6 +1,7 @@
 package cn.xwj.easy.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
@@ -25,8 +26,17 @@ public class EView {
         return instance;
     }
 
-    public void transparentStatusBar(Activity activity) {
-        if (Build.VERSION.SDK_INT >= 21 && activity != null) {
+    /**
+     * 设置沉寝式状态栏
+     *  需要设置主题为Theme.AppCompat.Light.NoActionBar 才能生效
+     */
+    public void transparentStatusBar() {
+        Context context = E.context();
+        if (!(context instanceof Activity)) {
+            throw new IllegalArgumentException("context is not activity");
+        }
+        if (Build.VERSION.SDK_INT >= 21 && context != null) {
+            Activity activity = (Activity) context;
             View decorView = activity.getWindow().getDecorView();
             if (decorView != null) {
                 decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -36,22 +46,22 @@ public class EView {
         }
     }
 
-    public static int dp2px(float dpValue) {
+    public int dp2px(float dpValue) {
         float density = E.context().getResources().getDisplayMetrics().density;
         return (int) (dpValue * density + 0.5f);
     }
 
-    public static int px2dp(float pxValue) {
+    public int px2dp(float pxValue) {
         float density = E.context().getResources().getDisplayMetrics().density;
         return (int) (pxValue / density + 0.5f);
     }
 
-    public static int sp2px(float spValue) {
+    public int sp2px(float spValue) {
         float scaledDensity = E.context().getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * scaledDensity + 0.5f);
     }
 
-    public static int px2sp(float pxValue) {
+    public int px2sp(float pxValue) {
         float scaledDensity = E.context().getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / scaledDensity + 0.5f);
     }

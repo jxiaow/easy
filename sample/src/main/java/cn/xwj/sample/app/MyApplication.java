@@ -13,8 +13,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        E.init(this).setDebug(true);
-
+        //E.init(this).setDebug(true);
+        E.action(this);
         //开启CrashHandler
         // E.init(this).crashHandler("EasyUtil").setDebug(true);
     }

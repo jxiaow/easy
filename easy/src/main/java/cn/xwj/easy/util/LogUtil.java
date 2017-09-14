@@ -17,7 +17,7 @@ public class LogUtil {
     public static final int LEVEL_WARN = 4;
     public static final int LEVEL_ERROR = 5;
 
-    private static int mLevel = LEVEL_NONE;
+    private static int mLevel = LEVEL_ERROR;
 
     public static void setLevel(int level) {
         mLevel = level;

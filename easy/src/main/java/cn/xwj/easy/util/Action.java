@@ -5,40 +5,36 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import cn.xwj.easy.E;
+
 /**
  * Created by xw on 2017/7/27.
  */
 
 public class Action {
 
-    private Activity mActivity;
-    private static Action sAction;
+    private volatile static Action sAction;
 
     private Action() {
     }
 
-    private Action(Activity activity) {
-        this.mActivity = activity;
-    }
-
-    public static Action getInstance(Activity activity) {
+    public static Action getInstance() {
         if (sAction == null) {
             synchronized (Action.class) {
                 if (sAction == null) {
-                    sAction = new Action(activity);
+                    sAction = new Action();
                 }
             }
         }
-        sAction.mActivity = activity;
         return sAction;
     }
 
     public <T> void actionStart(Class<T> tClass) {
-        actionStart(mActivity, tClass, null);
+        actionStart(E.context(), tClass, null);
     }
 
     public <T> void actionStart(Class<T> tClass, Bundle bundle) {
-        actionStart(mActivity, tClass, bundle);
+        actionStart(E.context(), tClass, bundle);
     }
 
 
@@ -47,6 +43,10 @@ public class Action {
             throw new IllegalArgumentException("context is null");
         }
         Intent intent = new Intent(context, tClass);
+
+        if (!(context instanceof Activity)) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
         if (bundle != null) {
             intent.putExtras(bundle);
         }

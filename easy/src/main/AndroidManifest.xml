@@ -9,7 +9,7 @@
         <activity
             android:name=".helper.PermissionActivity"
             android:launchMode="singleInstance"
-            android:theme="@style/Theme.NoTitle.FullScreen">
+            android:theme="@style/Theme.Translucent">
         </activity>
     </application>
 

@@ -1,6 +1,7 @@
 package cn.xwj.easy.helper;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,19 +14,27 @@ import cn.xwj.easy.util.ToastUtil;
 
 public class PermissionActivity extends AppCompatActivity {
 
-    private int mRequestCode;
+    private static final int mRequestCode = 1;
+    private static EPermission.PermissionResult sPermissionResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permission);
-        showPermissionConfigDialog("1", "2");
+
+        Intent intent = getIntent();
+        String[] permissions = intent.getExtras().getStringArray(EPermission.PermissionResult.PERMISSIONS_KEY);
+        request(permissions);
     }
 
-    public void showPermissionConfigDialog(String... permissions) {
-        final AlertDialog dialog = new AlertDialog.Builder(this)
+    private void request(String[] permissions) {
+        showPermissionConfigDialog(permissions);
+    }
+
+    public void showPermissionConfigDialog(final String... permissions) {
+        AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("权限设置")
-                .setMessage("亲, 您拒绝了权限，需要您授予")
+                .setMessage("亲, 为了程序可以正常运行，需要您授予些重要权限")
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -35,50 +44,58 @@ public class PermissionActivity extends AppCompatActivity {
                 }).setPositiveButton("授予", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // requestPermission(mRequestCode, permissions);
+                        requestPermission(permissions);
                         dialog.dismiss();
-                        PermissionActivity.this.finish();
                     }
                 }).create();
         dialog.show();
     }
 
-    public void shouldShowRequestPermissionRationale(int requestCode, String... permissions) {
-        boolean isNeed = false;
-        for (String permission : permissions) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
-                isNeed = true;
-                break;
-            }
-        }
+//    public void shouldShowRequestPermissionRationale(int requestCode, String... permissions) {
+//        boolean isNeed = false;
+//        for (String permission : permissions) {
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+//                isNeed = true;
+//                break;
+//            }
+//        }
+//        if (isNeed) {
+//            showPermissionConfigDialog(permissions);
+//        } else {
+//            requestPermission(permissions);
+//        }
+//    }
 
-        if (isNeed) {
-            showPermissionConfigDialog(permissions);
-        } else {
-            requestPermission(requestCode, permissions);
-        }
-    }
-
-    public void requestPermission(int code, String... permissions) {
-        this.mRequestCode = code;
-        ActivityCompat.requestPermissions(this, permissions, code);
+    public void requestPermission(String... permissions) {
+        ActivityCompat.requestPermissions(this, permissions, mRequestCode);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         parserRequestPermissionsResult(requestCode, permissions, grantResults);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        this.finish();
     }
 
     public boolean parserRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (mRequestCode == requestCode && grantResults != null && grantResults.length > 0) {
             for (int result : grantResults) {
                 if (result == PackageManager.PERMISSION_DENIED) {
+                    if (sPermissionResult != null) {
+                        sPermissionResult.onFail();
+                    }
                     return false;
                 }
+            }
+            if (sPermissionResult != null) {
+                sPermissionResult.onGranted();
             }
             return true;
         }
         return false;
+    }
+
+    public static void setIPermission(EPermission.PermissionResult permissionResult) {
+        sPermissionResult = permissionResult;
     }
 }

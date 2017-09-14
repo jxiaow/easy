@@ -2,6 +2,7 @@ package cn.xwj.easy.helper;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 
 import cn.xwj.easy.E;
@@ -15,12 +16,11 @@ public class EPermission {
 
     private Activity mActivity;
     private static EPermission sHelper;
-    private IPermission mPermission;
+    private PermissionResult mPermissionResult;
     private String[] permissions;
 
 
     private EPermission() {
-
     }
 
     private EPermission(Activity activity) {
@@ -43,8 +43,8 @@ public class EPermission {
         return sHelper;
     }
 
-    public void request(IPermission permission) {
-        this.mPermission = permission;
+    public void request(PermissionResult permission) {
+        this.mPermissionResult = permission;
         checkPermission();
     }
 
@@ -54,14 +54,15 @@ public class EPermission {
         }
         boolean granted = hasPermission(permissions);//检查所有权限是否都已经授予
         if (!granted) {
-            //shouldShowRequestPermissionRationale();
-            //shouldShowRequestPermissionRationale(1, permissions);
             //开启一个activity用于进行授权
-            E.action(mActivity).actionStart(PermissionActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putStringArray(PermissionResult.PERMISSIONS_KEY, permissions);
+            PermissionActivity.setIPermission(mPermissionResult);
+            E.action(mActivity).actionStart(PermissionActivity.class, bundle);
         } else {
             //回调接口
-            if (mPermission != null) {
-                mPermission.onGranted();
+            if (mPermissionResult != null) {
+                mPermissionResult.onGranted();
             }
         }
     }
@@ -76,8 +77,9 @@ public class EPermission {
         return true;
     }
 
+    public interface PermissionResult {
+        String PERMISSIONS_KEY = "permissions_key";
 
-    public interface IPermission {
         void onGranted();
 
         void onFail();
