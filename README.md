@@ -38,4 +38,4 @@ Gradle:
             }
         }
          
-        compile 'com.github.xiaowujiang:EasyUtils:releases'
+        compile 'com.github.xiaowujiang:Easy:releases'
