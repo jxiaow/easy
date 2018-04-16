@@ -31,7 +31,7 @@ public class CollectionUtil {
      * @param <E>        泛型
      * @return true 为空，false不为空
      */
-    public <E> boolean isEmpty(Collection<E> collection) {
+    public static <E> boolean isEmpty(Collection<E> collection) {
         return collection == null || collection.isEmpty();
     }
 
