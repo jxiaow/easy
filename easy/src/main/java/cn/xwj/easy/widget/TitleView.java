@@ -6,9 +6,12 @@ import android.graphics.Color;
 import android.hardware.display.DisplayManager;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.IdRes;
+import android.support.annotation.MenuRes;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -70,6 +73,27 @@ public class TitleView extends LinearLayout {
     }
 
     /**
+     * 设置某个item的监听事件
+     * @param menuId
+     * @param listener
+     */
+    public void setOnMenuItemClickListener(@IdRes final int menuId,
+                                           final Toolbar.OnMenuItemClickListener listener) {
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == menuId) {
+                    if (listener != null) {
+                        listener.onMenuItemClick(item);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    /**
      * 左侧按钮的点击事件
      *
      * @param clickListener clickListener
@@ -122,9 +146,10 @@ public class TitleView extends LinearLayout {
     }
 
     private void initView() {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.title_layout, this, true);
-        mToolbar = (Toolbar) view.findViewById(R.id.tool_bar);
-        mTitle = (TextView) view.findViewById(R.id.title_text);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.title_layout,
+                this, true);
+        mToolbar =  view.findViewById(R.id.tool_bar);
+        mTitle = view.findViewById(R.id.title_text);
         mToolbar.setTitle("");
     }
 
