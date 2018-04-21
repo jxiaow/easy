@@ -74,6 +74,7 @@ public class TitleView extends LinearLayout {
 
     /**
      * 设置某个item的监听事件
+     *
      * @param menuId
      * @param listener
      */
@@ -130,12 +131,12 @@ public class TitleView extends LinearLayout {
         }
         if (backgroundId == -1) {
             if (Build.VERSION.SDK_INT > 16) {
-                mToolbar.setBackground(this.getBackground());
+                setBackground(this.getBackground());
             } else {
-                mToolbar.setBackgroundDrawable(this.getBackground());
+                setBackgroundDrawable(this.getBackground());
             }
         } else {
-            mToolbar.setBackgroundResource(backgroundId);
+            setBackgroundResource(backgroundId);
         }
 
         if (menu_layout_id != -1) {
@@ -148,7 +149,7 @@ public class TitleView extends LinearLayout {
     private void initView() {
         View view = LayoutInflater.from(mContext).inflate(R.layout.title_layout,
                 this, true);
-        mToolbar =  view.findViewById(R.id.tool_bar);
+        mToolbar = view.findViewById(R.id.tool_bar);
         mTitle = view.findViewById(R.id.title_text);
         mToolbar.setTitle("");
     }
