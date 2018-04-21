@@ -132,11 +132,14 @@ public class TitleView extends LinearLayout {
         if (backgroundId == -1) {
             if (Build.VERSION.SDK_INT > 16) {
                 setBackground(this.getBackground());
+                mToolbar.setBackground(this.getBackground());
             } else {
                 setBackgroundDrawable(this.getBackground());
+                mToolbar.setBackgroundDrawable(this.getBackground());
             }
         } else {
             setBackgroundResource(backgroundId);
+            mToolbar.setBackgroundResource(backgroundId);
         }
 
         if (menu_layout_id != -1) {
