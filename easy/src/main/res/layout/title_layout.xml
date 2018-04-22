@@ -4,11 +4,13 @@
     android:id="@+id/tool_bar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
     android:background="?attr/colorPrimary"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    android:fitsSystemWindows="true">
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
     <TextView
         android:id="@+id/title_text"
