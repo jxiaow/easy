@@ -68,7 +68,7 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
         mHeaderView = view;
         LayoutParams lp = new LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        view.setLayoutParams(lp);
+        mHeaderView.setLayoutParams(lp);
 
         if (mHeaderView != null) {
             setFadingEdgeLength(0);
