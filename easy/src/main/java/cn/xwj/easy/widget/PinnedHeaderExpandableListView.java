@@ -62,10 +62,6 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
      */
     public void setHeaderView(View view) {
         mHeaderView = view;
-//        LayoutParams lp = new LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//        mHeaderView.setLayoutParams(lp);
-
         if (mHeaderView != null) {
             setFadingEdgeLength(0);
         }
@@ -178,6 +174,7 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
             int state = mAdapter.getHeaderState(groupPos, childPos, this.isGroupExpanded(groupPos));
             if (mCurrentState != state) {
                 mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
+                mCurrentState = state;
             }
         }
         configureHeaderView(groupPos, childPos);
@@ -202,9 +199,10 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
             case HeaderAdapter.PINNED_HEADER_VISIBLE: {
                 mAdapter.configureHeader(mHeaderView, groupPosition, childPosition, MAX_ALPHA);
 
-//                if (mHeaderView.getTop() != 0) {
-                mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
-//                }
+                if (mHeaderView.getTop() != 0) {
+                    mHeaderView.requestLayout();
+//                    mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
+                }
 
                 mHeaderViewVisible = true;
                 mHeaderView.setVisibility(VISIBLE);
