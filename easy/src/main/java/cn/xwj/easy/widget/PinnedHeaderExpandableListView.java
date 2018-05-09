@@ -39,11 +39,6 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
 
     private int mHeaderViewHeight;
 
-    //private float mDownX;
-    //private float mDownY;
-
-    private int mOldState = -1;
-
     public PinnedHeaderExpandableListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         registerListener();
@@ -66,14 +61,13 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
      */
     public void setHeaderView(View view) {
         mHeaderView = view;
-        LayoutParams lp = new LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        mHeaderView.setLayoutParams(lp);
+//        LayoutParams lp = new LayoutParams(
+//                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        mHeaderView.setLayoutParams(lp);
 
         if (mHeaderView != null) {
             setFadingEdgeLength(0);
         }
-
         requestLayout();
     }
 
@@ -183,8 +177,7 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
             state = mAdapter.getHeaderState(groupPos, childPos, this.isGroupExpanded(groupPos));
         }
 
-        if (mHeaderView != null && mAdapter != null && state != mOldState) {
-            mOldState = state;
+        if (mHeaderView != null && mAdapter != null) {
             mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
         }
 
@@ -197,7 +190,8 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
             return;
         }
 
-        int state = mAdapter.getHeaderState(groupPosition, childPosition, this.isGroupExpanded(groupPosition));
+        int state = mAdapter.getHeaderState(groupPosition, childPosition,
+                this.isGroupExpanded(groupPosition));
 
         switch (state) {
             case HeaderAdapter.PINNED_HEADER_GONE: {
@@ -265,8 +259,8 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         final long flatPos = getExpandableListPosition(firstVisibleItem);
-        int groupPosition = this.getPackedPositionGroup(flatPos);
-        int childPosition = this.getPackedPositionChild(flatPos);
+        int groupPosition = getPackedPositionGroup(flatPos);
+        int childPosition = getPackedPositionChild(flatPos);
         configureHeaderView(groupPosition, childPosition);
     }
 
@@ -274,53 +268,13 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
     public void onScrollStateChanged(AbsListView view, int scrollState) {
     }
 
-//
-//    /**
-//     * 如果 HeaderView 是可见的 , 此函数用于判断是否点击了 HeaderView, 并对做相应的处理 ,
-//     * 因为 HeaderView 是画上去的 , 所以设置事件监听是无效的 , 只有自行控制 .
-//     */
-//    @Override
-//    public boolean onTouchEvent(MotionEvent ev) {
-//        if (mHeaderViewVisible) {
-//            switch (ev.getAction()) {
-//                case MotionEvent.ACTION_DOWN:
-//                    mDownX = ev.getX();
-//                    mDownY = ev.getY();
-//                    if (mDownX <= mHeaderViewWidth && mDownY <= mHeaderViewHeight) {
-//                        return true;
-//                    }
-//                    break;
-//                case MotionEvent.ACTION_UP:
-//                    float x = ev.getX();
-//                    float y = ev.getY();
-//                    float offsetX = Math.abs(x - mDownX);
-//                    float offsetY = Math.abs(y - mDownY);
-//                    // 如果 HeaderView 是可见的 , 点击在 HeaderView 内 , 那么触发 headerClick()
-//                    if (x <= mHeaderViewWidth && y <= mHeaderViewHeight
-//                            && offsetX <= mHeaderViewWidth && offsetY <= mHeaderViewHeight) {
-//                        if (mHeaderView != null) {
-//                            headerViewClick();
-//                        }
-//
-//                        return true;
-//                    }
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//
-//        return super.onTouchEvent(ev);
-//
-//    }
-
     /**
      * Adapter 接口 . 列表必须实现此接口 .
      */
     public interface HeaderAdapter {
-        public static final int PINNED_HEADER_GONE = 0;
-        public static final int PINNED_HEADER_VISIBLE = 1;
-        public static final int PINNED_HEADER_PUSHED_UP = 2;
+        int PINNED_HEADER_GONE = 0;
+        int PINNED_HEADER_VISIBLE = 1;
+        int PINNED_HEADER_PUSHED_UP = 2;
 
         /**
          * 获取 Header 的状态
