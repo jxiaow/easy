@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -38,6 +37,8 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
     private int mHeaderViewWidth;
 
     private int mHeaderViewHeight;
+
+    private int mCurrentState = -1;
 
     public PinnedHeaderExpandableListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -169,18 +170,16 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        final long flatPostion = getExpandableListPosition(getFirstVisiblePosition());
-        final int groupPos = ExpandableListView.getPackedPositionGroup(flatPostion);
-        final int childPos = ExpandableListView.getPackedPositionChild(flatPostion);
-        int state = -1;
-        if (mAdapter != null) {
-            state = mAdapter.getHeaderState(groupPos, childPos, this.isGroupExpanded(groupPos));
-        }
+        final long firstPosition = getExpandableListPosition(getFirstVisiblePosition());
+        final int groupPos = getPackedPositionGroup(firstPosition);
+        final int childPos = getPackedPositionChild(firstPosition);
 
-        if (mHeaderView != null && mAdapter != null) {
-            mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
+        if (mAdapter != null && mHeaderView != null) {
+            int state = mAdapter.getHeaderState(groupPos, childPos, this.isGroupExpanded(groupPos));
+            if (mCurrentState != state) {
+                mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
+            }
         }
-
         configureHeaderView(groupPos, childPos);
     }
 
@@ -203,9 +202,9 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
             case HeaderAdapter.PINNED_HEADER_VISIBLE: {
                 mAdapter.configureHeader(mHeaderView, groupPosition, childPosition, MAX_ALPHA);
 
-                if (mHeaderView.getTop() != 0) {
-                    mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
-                }
+//                if (mHeaderView.getTop() != 0) {
+                mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
+//                }
 
                 mHeaderViewVisible = true;
                 mHeaderView.setVisibility(VISIBLE);
@@ -216,8 +215,6 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
             case HeaderAdapter.PINNED_HEADER_PUSHED_UP: {
                 View firstView = getChildAt(0);
                 int bottom = firstView.getBottom();
-
-                // intitemHeight = firstView.getHeight();
                 int headerHeight = mHeaderView.getHeight();
 
                 int y;
@@ -237,7 +234,6 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
                 if (mHeaderView.getTop() != y) {
                     mHeaderView.layout(0, y, mHeaderViewWidth, mHeaderViewHeight + y);
                 }
-
                 mHeaderViewVisible = true;
                 break;
             }
