@@ -199,11 +199,10 @@ public class PinnedHeaderExpandableListView extends ExpandableListView
             case HeaderAdapter.PINNED_HEADER_VISIBLE: {
                 mAdapter.configureHeader(mHeaderView, groupPosition, childPosition, MAX_ALPHA);
 
-                if (mHeaderView.getTop() != 0) {
-                    mHeaderView.requestLayout();
+//                if (mHeaderView.getTop() != 0) {
+                mHeaderView.requestLayout();
 //                    mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
-                }
-
+//                }
                 mHeaderViewVisible = true;
                 mHeaderView.setVisibility(VISIBLE);
 

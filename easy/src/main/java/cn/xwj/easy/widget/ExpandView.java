@@ -19,6 +19,7 @@ import cn.xwj.easy.util.DisplayUtils;
  * 自定义可伸缩的View
  * Created by xwj on 2017/9/21.
  */
+
 /**
  * 自定义可伸缩的View
  * Created by xwj on 2017/9/21.
@@ -69,6 +70,7 @@ public class ExpandView extends LinearLayout implements View.OnClickListener {
         int layoutId = typedArray.getResourceId(R.styleable.ExpandView_expand_layout, -1);
         int titleTextColor = typedArray.getColor(R.styleable.ExpandView_title_text_color, -1);
         int itemBackground = typedArray.getColor(R.styleable.ExpandView_item_background, -1);
+        isExpand = typedArray.getBoolean(R.styleable.ExpandView_expand, false);
 
         setTitle(titleName);
         setTitleTextSize(DisplayUtils.px2dp(getContext(), titleSize));
@@ -80,7 +82,7 @@ public class ExpandView extends LinearLayout implements View.OnClickListener {
             mExpandContainer.setLayoutResource(layoutId);
             mExpandContainer.inflate();
             mExpandView = this.findViewById(mExpandContainer.getInflatedId());
-            mExpandView.setVisibility(View.GONE);
+            mExpandView.setVisibility(isExpand ? View.VISIBLE : View.GONE);
         }
         typedArray.recycle();
     }

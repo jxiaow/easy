@@ -10,6 +10,7 @@
     </declare-styleable>
     <declare-styleable name="ExpandView">
         <attr name="title_text" />
+        <attr name="expand" format="boolean"/>
         <attr name="title_size" format="dimension" />
         <attr name="title_text_color" />
         <attr name="indicator_expand" format="reference" />
