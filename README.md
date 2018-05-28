@@ -31,5 +31,5 @@
 Gradle:
 
 ```groovy
-   implementation 'cn.xwj:easy:1.2.8'
+   implementation 'cn.xwj:easy:1.2.9'
 ```

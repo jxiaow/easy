@@ -5,6 +5,7 @@
 |       属性        |      格式  |       说明
 |-------------------|----------|------------------
 |  title_text       | string\reference    |       item标题
+|  expand           | boolean             |       内容展开判断
 |   title_size      | dimension           |item标题的文字大小
 |title_text_color   | reference           |item标题的文字颜色
 |indicator_expand   | reference           |  展开指示图标
