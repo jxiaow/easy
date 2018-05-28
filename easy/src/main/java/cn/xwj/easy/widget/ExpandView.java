@@ -70,7 +70,7 @@ public class ExpandView extends LinearLayout implements View.OnClickListener {
         int layoutId = typedArray.getResourceId(R.styleable.ExpandView_expand_layout, -1);
         int titleTextColor = typedArray.getColor(R.styleable.ExpandView_title_text_color, -1);
         int itemBackground = typedArray.getColor(R.styleable.ExpandView_item_background, -1);
-        isExpand = typedArray.getBoolean(R.styleable.ExpandView_expand, false);
+        isExpand = typedArray.getBoolean(R.styleable.ExpandView_expand, isExpand);
 
         setTitle(titleName);
         setTitleTextSize(DisplayUtils.px2dp(getContext(), titleSize));
