@@ -1,0 +1,50 @@
+// 定义android config 依赖
+def config = [:]
+
+config.compileSdkVersion = 27
+config.minSdkVersion = 15
+config.targetSdkVersion = 27
+config.versionCode = 1
+config.versionName = "1.0"
+config.testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+
+ext.config = config
+
+// 版本管理
+def versions = [:]
+versions.androidGradlePlugin = '3.5.3'
+versions.kotlinVersion = '1.3.61'
+versions.androidMavenGradlePlugin = '2.1'
+versions.support = '27.1.1'
+versions.junit = '4.12'
+versions.testRunner = '1.0.1'
+versions.espressoCore = '3.0.1'
+versions.androidCoroutineVersion = '1.1.1'
+versions.immersionbarVersion = '2.3.2-beta01'
+ext.versions = versions
+
+// 依赖管理
+def deps = [:]
+
+deps.appCompat = "com.android.support:appcompat-v7:${versions.support}"
+deps.junit = "junit:junit:${versions.junit}"
+deps.testRunner = "com.android.support.test:runner:${versions.testRunner}"
+deps.espressoCore = "com.android.support.test.espresso:espresso-core:${versions.espressoCore}"
+deps.design = "com.android.support:design:${versions.support}"
+deps.androidCoroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.androidCoroutineVersion}"
+deps.coroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.androidCoroutineVersion}"
+deps.stdlibJdk = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlinVersion}"
+deps.immersionbar = "com.gyf.immersionbar:immersionbar:${versions.immersionbarVersion}"
+ext.deps = deps
+
+
+static def addRepos(RepositoryHandler handler) {
+    handler.maven { url 'https://maven.aliyun.com/repository/google/' }
+    handler.maven { url 'https://maven.aliyun.com/repository/jcenter/' }
+    handler.google()
+    handler.jcenter()
+    handler.mavenCentral()
+    handler.maven { url "https://jitpack.io" }
+}
+
+ext.addRepos = this.&addRepos

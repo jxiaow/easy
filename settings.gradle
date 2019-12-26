@@ -1,1 +1,1 @@
-include ':sample','easy'
+include ':sample', 'easy', ':coroutine', ':ui', ':exts'

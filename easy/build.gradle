@@ -1,22 +1,18 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.github.dcendents.android-maven'
-
-group='com.github.xiaowujiang'
+group = 'com.github.ixiaow'
 
 android {
-    compileSdkVersion 27
 
-
+    compileSdkVersion config.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        testInstrumentationRunner config.testInstrumentationRunner
     }
 
     buildTypes {
@@ -30,45 +26,14 @@ android {
     }
 }
 
-//添加
-publish {
-    userOrg = 'xiaowujiang'//bintray.com用户名
-    groupId = 'cn.xwj'//jcenter上的路径
-    artifactId = 'easy'//项目名称
-    publishVersion = '1.2.9'//版本号
-    desc = 'a tool for android '//描述，不重要
-    website = 'https://github.com/xiaowujiang/Easy'//网站，不重要；尽量模拟github上的地址
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation 'com.android.support:design:27.1.1'
+    compileOnly deps.appCompat
+    testImplementation deps.junit
+    androidTestImplementation deps.testRunner
+    androidTestImplementation deps.espressoCore
+    implementation deps.design
 }
 
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
 
-task javadoc(type: Javadoc) {
-    failOnError  false
-    source = android.sourceSets.main.java.sourceFiles
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    classpath += configurations.compile
-}
-
-// build a jar with javadoc
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
+apply from: '../doc.gradle'

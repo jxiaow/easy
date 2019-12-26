@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.ixiaow'
+
+android {
+    compileSdkVersion config.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+
+        testInstrumentationRunner config.testInstrumentationRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly deps.appCompat
+    testImplementation deps.junit
+    androidTestImplementation deps.testRunner
+    androidTestImplementation deps.espressoCore
+    compileOnly deps.stdlibJdk
+    compileOnly deps.immersionbar
+//    compileOnly deps.coroutine_core
+}
+
+apply from: '../doc.gradle'
