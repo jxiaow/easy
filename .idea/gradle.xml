@@ -10,10 +10,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/coroutine" />
-            <option value="$PROJECT_DIR$/easy" />
             <option value="$PROJECT_DIR$/exts" />
+            <option value="$PROJECT_DIR$/helper" />
             <option value="$PROJECT_DIR$/sample" />
-            <option value="$PROJECT_DIR$/ui" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
