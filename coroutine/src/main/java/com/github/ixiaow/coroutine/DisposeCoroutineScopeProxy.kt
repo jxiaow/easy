@@ -8,23 +8,11 @@ import java.util.*
 import kotlin.coroutines.CoroutineContext
 import kotlin.reflect.KProperty
 
-
-private const val TAG = "DisposeCoroutineScope"
-
-var debug: Boolean = true
-
-
-internal fun debug(msg: String) {
-    if (debug) {
-        Log.d(TAG, msg)
-    }
-}
-
 /**
  * 协程的代理
  */
 class DisposeCoroutineScopeProxy(
-    override val coroutineContext: CoroutineContext // 协程上下文
+        override val coroutineContext: CoroutineContext // 协程上下文
 ) : DisposeCoroutineScope {
 
     companion object {
@@ -86,15 +74,15 @@ class DisposeCoroutineScopeProxy(
         }
         // 创建协程
         val coroutineScopeImpl = DisposeCoroutineScopeImpl(
-            this,
-            SupervisorJob() + coroutineContext, tag
+                this,
+                SupervisorJob() + coroutineContext, tag
         )
         // 处理activity的生命周期
         if (any is LifecycleOwner) {
             coroutineScopeImpl.wrapperLifecycleOwner(any)
         }
         return setTagIfAbsent(
-            tag, coroutineScopeImpl
+                tag, coroutineScopeImpl
         )
     }
 

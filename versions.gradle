@@ -1,9 +1,9 @@
 // 定义android config 依赖
 def config = [:]
 
-config.compileSdkVersion = 27
+config.compileSdkVersion = 28
 config.minSdkVersion = 15
-config.targetSdkVersion = 27
+config.targetSdkVersion = 28
 config.versionCode = 1
 config.versionName = "1.0"
 config.testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
@@ -21,11 +21,17 @@ versions.testRunner = '1.0.1'
 versions.espressoCore = '3.0.1'
 versions.androidCoroutineVersion = '1.1.1'
 versions.immersionbarVersion = '2.3.2-beta01'
+versions.constraintlayout = '1.0.2'
 ext.versions = versions
 
 // 依赖管理
 def deps = [:]
 
+deps.androidGradlePlugin = "com.android.tools.build:gradle:${versions.androidGradlePlugin}"
+deps.kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlinVersion}"
+deps.androidMavenGradlePlugin = "com.github.dcendents:android-maven-gradle-plugin:${versions.androidMavenGradlePlugin}"
+
+deps.stdlibJdk = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlinVersion}"
 deps.appCompat = "com.android.support:appcompat-v7:${versions.support}"
 deps.junit = "junit:junit:${versions.junit}"
 deps.testRunner = "com.android.support.test:runner:${versions.testRunner}"
@@ -33,8 +39,8 @@ deps.espressoCore = "com.android.support.test.espresso:espresso-core:${versions.
 deps.design = "com.android.support:design:${versions.support}"
 deps.androidCoroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.androidCoroutineVersion}"
 deps.coroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.androidCoroutineVersion}"
-deps.stdlibJdk = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlinVersion}"
 deps.immersionbar = "com.gyf.immersionbar:immersionbar:${versions.immersionbarVersion}"
+deps.constraintlayout = "com.android.support.constraint:constraint-layout:${versions.constraintlayout}"
 ext.deps = deps
 
 

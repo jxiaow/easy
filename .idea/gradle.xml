@@ -10,8 +10,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/coroutine" />
-            <option value="$PROJECT_DIR$/exts" />
             <option value="$PROJECT_DIR$/helper" />
+            <option value="$PROJECT_DIR$/ktx" />
             <option value="$PROJECT_DIR$/sample" />
           </set>
         </option>

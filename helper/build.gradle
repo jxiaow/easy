@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
+
 group = 'com.github.ixiaow'
 
 android {
-
     compileSdkVersion config.compileSdkVersion
 
     defaultConfig {
@@ -20,13 +20,15 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     lintOptions {
         abortOnError false
     }
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -34,12 +36,8 @@ dependencies {
     testImplementation deps.junit
     androidTestImplementation deps.testRunner
     androidTestImplementation deps.espressoCore
+    compileOnly deps.stdlibJdk
     implementation deps.design
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
-
 
 apply from: '../doc.gradle'
-repositories {
-    mavenCentral()
-}
