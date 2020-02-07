@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'org.jetbrains.dokka'
+
 
 group = 'com.github.ixiaow'
 
@@ -36,5 +38,3 @@ dependencies {
     compileOnly deps.androidCoroutine
 //    compileOnly deps.coroutine_core
 }
-
-apply from: '../doc.gradle'

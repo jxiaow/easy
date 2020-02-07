@@ -10,6 +10,7 @@ buildscript {
         classpath deps.androidGradlePlugin
         classpath deps.androidMavenGradlePlugin
         classpath deps.kotlinGradlePlugin
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.10.1"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -17,20 +18,9 @@ buildscript {
 
 allprojects {
     addRepos(repositories)
-
-    tasks.withType(Javadoc) {
-        options {
-            encoding "UTF-8"
-            charSet 'UTF-8'
-            links "http://docs.oracle.com/javase/7/docs/api"
-        }
-    }
-    tasks.withType(Javadoc) {
-        options.addStringOption('Xdoclint:none', '-quiet')
-        options.addStringOption('encoding', 'UTF-8')
-    }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
