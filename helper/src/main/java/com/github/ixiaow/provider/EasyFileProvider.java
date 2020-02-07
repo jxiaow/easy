@@ -1,6 +1,6 @@
 package com.github.ixiaow.provider;
 
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 
 /**
  * 自定义FileProvider，解决provider冲突的问题

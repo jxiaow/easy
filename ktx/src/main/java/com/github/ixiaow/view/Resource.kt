@@ -1,7 +1,7 @@
 package com.github.ixiaow.view
 
 import android.content.res.Resources
-import android.support.annotation.DimenRes
+import androidx.annotation.DimenRes
 
 /**
  * 获取dp

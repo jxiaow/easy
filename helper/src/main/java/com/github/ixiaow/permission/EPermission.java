@@ -2,7 +2,8 @@ package com.github.ixiaow.permission;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
-import android.support.v4.content.ContextCompat;
+
+import androidx.core.content.ContextCompat;
 
 import java.lang.ref.WeakReference;
 

@@ -1,7 +1,6 @@
 package com.github.ixiaow.coroutine
 
-import android.arch.lifecycle.LifecycleOwner
-import android.util.Log
+import androidx.lifecycle.LifecycleOwner
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.isActive
 import java.util.*
@@ -12,7 +11,7 @@ import kotlin.reflect.KProperty
  * 协程的代理
  */
 class DisposeCoroutineScopeProxy(
-        override val coroutineContext: CoroutineContext // 协程上下文
+    override val coroutineContext: CoroutineContext // 协程上下文
 ) : DisposeCoroutineScope {
 
     companion object {
@@ -74,15 +73,15 @@ class DisposeCoroutineScopeProxy(
         }
         // 创建协程
         val coroutineScopeImpl = DisposeCoroutineScopeImpl(
-                this,
-                SupervisorJob() + coroutineContext, tag
+            this,
+            SupervisorJob() + coroutineContext, tag
         )
         // 处理activity的生命周期
         if (any is LifecycleOwner) {
             coroutineScopeImpl.wrapperLifecycleOwner(any)
         }
         return setTagIfAbsent(
-                tag, coroutineScopeImpl
+            tag, coroutineScopeImpl
         )
     }
 

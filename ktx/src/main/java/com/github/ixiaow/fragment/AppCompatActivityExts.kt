@@ -1,10 +1,9 @@
 package com.github.ixiaow.fragment
 
-import android.support.annotation.IdRes
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.IdRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.github.ixiaow.data.R
 
 fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, @IdRes frameId: Int) {
@@ -19,7 +18,7 @@ fun AppCompatActivity.findFragmentById(@IdRes frameId: Int): Fragment? {
 
 inline fun <reified T : Fragment> AppCompatActivity.replaceFragmentInActivity(
     @IdRes id: Int = R.id.container
-): T = findFragmentById(id) as? T?
+) = findFragmentById(id) as? T?
     ?: T::class.java.newInstance().also {
         replaceFragmentInActivity(it, id)
     }
@@ -47,7 +46,7 @@ fun AppCompatActivity.switchFragment(fragment: Fragment, @IdRes frameId: Int) {
  *
  * @param fragment 目标fragment
  */
-fun FragmentManager.switchFragment(fragment: Fragment, @IdRes frameId: Int) {
+fun androidx.fragment.app.FragmentManager.switchFragment(fragment: Fragment, @IdRes frameId: Int) {
     transact {
         //获取当前fragmentManager中的所有fragment
         val fragments: List<Fragment> = fragments
@@ -67,7 +66,7 @@ fun FragmentManager.switchFragment(fragment: Fragment, @IdRes frameId: Int) {
 /**
  * Runs a FragmentTransaction, then calls commit().
  */
-inline fun FragmentManager.transact(action: FragmentTransaction.() -> Unit) {
+inline fun androidx.fragment.app.FragmentManager.transact(action: FragmentTransaction.() -> Unit) {
     beginTransaction().apply {
         action()
     }.commit()

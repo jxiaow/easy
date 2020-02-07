@@ -6,7 +6,7 @@ config.minSdkVersion = 15
 config.targetSdkVersion = 28
 config.versionCode = 1
 config.versionName = "1.0"
-config.testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+config.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
 ext.config = config
 
@@ -32,11 +32,11 @@ deps.kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.
 deps.androidMavenGradlePlugin = "com.github.dcendents:android-maven-gradle-plugin:${versions.androidMavenGradlePlugin}"
 
 deps.stdlibJdk = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlinVersion}"
-deps.appCompat = "com.android.support:appcompat-v7:${versions.support}"
+deps.appCompat = 'androidx.appcompat:appcompat:1.0.0'
 deps.junit = "junit:junit:${versions.junit}"
-deps.testRunner = "com.android.support.test:runner:${versions.testRunner}"
-deps.espressoCore = "com.android.support.test.espresso:espresso-core:${versions.espressoCore}"
-deps.design = "com.android.support:design:${versions.support}"
+deps.testRunner = 'androidx.test:runner:1.1.0'
+deps.espressoCore = 'androidx.test.espresso:espresso-core:3.1.0'
+deps.design = 'com.google.android.material:material:1.0.0'
 deps.androidCoroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.androidCoroutineVersion}"
 deps.coroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.androidCoroutineVersion}"
 deps.immersionbar = "com.gyf.immersionbar:immersionbar:${versions.immersionbarVersion}"

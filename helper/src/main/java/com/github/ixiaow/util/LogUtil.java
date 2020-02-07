@@ -1,5 +1,6 @@
 package com.github.ixiaow.util;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 /**
@@ -57,6 +58,7 @@ public class LogUtil {
      * 获取TAG
      * @return 返回tag
      */
+    @SuppressLint("DefaultLocale")
     public static String getTag() {
         StackTraceElement call = new Throwable().getStackTrace()[2];
         String tag = "%s.%s (Line: %d)";

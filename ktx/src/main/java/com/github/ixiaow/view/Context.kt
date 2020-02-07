@@ -4,11 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorRes
-import android.support.annotation.DimenRes
-import android.support.annotation.DrawableRes
-import android.support.annotation.LayoutRes
-import android.support.v4.content.ContextCompat
+import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View

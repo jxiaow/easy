@@ -1,11 +1,9 @@
 package com.github.ixiaow.view
 
-import android.graphics.drawable.Drawable
-import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.annotation.LayoutRes
 
 /**
  * 设置view是否为gone
@@ -30,8 +28,8 @@ var View.invisible: Boolean
  * 解析资源布局
  */
 fun View.inflater(
-        @LayoutRes id: Int, root: ViewGroup?,
-        attachToRoot: Boolean = root != null
+    @LayoutRes id: Int, root: ViewGroup?,
+    attachToRoot: Boolean = root != null
 ): View {
     return LayoutInflater.from(context).inflate(id, root, attachToRoot)
 }

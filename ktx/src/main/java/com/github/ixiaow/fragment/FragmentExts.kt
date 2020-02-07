@@ -2,7 +2,7 @@ package com.github.ixiaow.fragment
 
 import android.app.Activity
 import android.content.Context
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 
 /**
  * 可以确保只有在Activity不为空的情况下执行相关代码

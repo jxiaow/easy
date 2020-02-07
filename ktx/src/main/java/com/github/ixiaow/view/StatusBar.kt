@@ -2,15 +2,15 @@ package com.github.ixiaow.view
 
 
 import android.app.Activity
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.OnLifecycleEvent
 import android.graphics.Color
 import android.os.Build
-import android.support.annotation.ColorInt
-import android.support.annotation.ColorRes
-import android.support.v4.app.Fragment
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.fragment.app.Fragment
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
@@ -24,7 +24,7 @@ import java.lang.ref.WeakReference
  * */
 class StatusBar private constructor() : LifecycleObserver {
     private var activityRef: WeakReference<Activity>? = null
-    private var fragmentRef: WeakReference<Fragment>? = null
+    private var fragmentRef: WeakReference<androidx.fragment.app.Fragment>? = null
     private var owner: LifecycleOwner? = null
 
     // 创建ImmersionBar对象
@@ -36,7 +36,7 @@ class StatusBar private constructor() : LifecycleObserver {
         initStyle()
     }
 
-    private constructor(fragment: Fragment) : this() {
+    private constructor(fragment: androidx.fragment.app.Fragment) : this() {
         fragmentRef = WeakReference(fragment)
         immersionBar = ImmersionBar.with(fragment)
         initStyle()
@@ -80,7 +80,7 @@ class StatusBar private constructor() : LifecycleObserver {
          * 创建一个 [StatusBar] 实例 with [Fragment]
          */
         @JvmStatic
-        fun create(fragment: Fragment) =
+        fun create(fragment: androidx.fragment.app.Fragment) =
                 StatusBar(fragment)
     }
 
