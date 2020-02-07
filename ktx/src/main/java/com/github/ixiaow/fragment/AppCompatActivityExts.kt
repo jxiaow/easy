@@ -17,30 +17,20 @@ fun AppCompatActivity.findFragmentById(@IdRes frameId: Int): Fragment? {
     return supportFragmentManager.findFragmentById(frameId)
 }
 
-/**
- * Runs a FragmentTransaction, then calls commit().
- */
-private inline fun FragmentManager.transact(action: FragmentTransaction.() -> Unit) {
-    beginTransaction().apply {
-        action()
-    }.commit()
-}
+inline fun <reified T : Fragment> AppCompatActivity.replaceFragmentInActivity(
+    @IdRes id: Int = R.id.container
+): T = findFragmentById(id) as? T?
+    ?: T::class.java.newInstance().also {
+        replaceFragmentInActivity(it, id)
+    }
 
 
 inline fun <reified T : Fragment> AppCompatActivity.replaceFragmentInActivity(
-        @IdRes id: Int = R.id.container
+    @IdRes id: Int = R.id.container, block: () -> T
 ): T = findFragmentById(id) as? T?
-        ?: T::class.java.newInstance().also {
-            replaceFragmentInActivity(it, id)
-        }
-
-
-inline fun <reified T : Fragment> AppCompatActivity.replaceFragmentInActivity(
-        @IdRes id: Int = R.id.container, block: () -> T
-): T = findFragmentById(id) as? T?
-        ?: block.invoke().also {
-            replaceFragmentInActivity(it, id)
-        }
+    ?: block.invoke().also {
+        replaceFragmentInActivity(it, id)
+    }
 
 
 /**
@@ -49,9 +39,18 @@ inline fun <reified T : Fragment> AppCompatActivity.replaceFragmentInActivity(
  * @param fragment 目标fragment
  */
 fun AppCompatActivity.switchFragment(fragment: Fragment, @IdRes frameId: Int) {
-    supportFragmentManager.transact {
+    supportFragmentManager.switchFragment(fragment, frameId)
+}
+
+/**
+ * 切换到目标fragment
+ *
+ * @param fragment 目标fragment
+ */
+fun FragmentManager.switchFragment(fragment: Fragment, @IdRes frameId: Int) {
+    transact {
         //获取当前fragmentManager中的所有fragment
-        val fragments: List<Fragment> = supportFragmentManager.fragments
+        val fragments: List<Fragment> = fragments
         for (f in fragments) { //遍历所有fragment设置隐藏
             hide(f)
         }
@@ -63,3 +62,14 @@ fun AppCompatActivity.switchFragment(fragment: Fragment, @IdRes frameId: Int) {
         }
     }
 }
+
+
+/**
+ * Runs a FragmentTransaction, then calls commit().
+ */
+inline fun FragmentManager.transact(action: FragmentTransaction.() -> Unit) {
+    beginTransaction().apply {
+        action()
+    }.commit()
+}
+
