@@ -22,6 +22,7 @@ versions.espressoCore = '3.0.1'
 versions.androidCoroutineVersion = '1.1.1'
 versions.immersionbarVersion = '2.3.2-beta01'
 versions.constraintlayout = '1.0.2'
+versions.testJunit = '1.1.0'
 ext.versions = versions
 
 // 依赖管理
@@ -34,7 +35,7 @@ deps.androidMavenGradlePlugin = "com.github.dcendents:android-maven-gradle-plugi
 deps.stdlibJdk = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlinVersion}"
 deps.appCompat = 'androidx.appcompat:appcompat:1.0.0'
 deps.junit = "junit:junit:${versions.junit}"
-deps.testRunner = 'androidx.test:runner:1.1.0'
+deps.testJunit = "androidx.test.ext:junit:${versions.testJunit}"
 deps.espressoCore = 'androidx.test.espresso:espresso-core:3.1.0'
 deps.design = 'com.google.android.material:material:1.0.0'
 deps.androidCoroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.androidCoroutineVersion}"

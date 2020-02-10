@@ -37,15 +37,15 @@ inline fun <reified T : BaseDialogFragment> FragmentManager.showDialog(): T {
     }
 }
 
-inline fun <reified T> AppCompatActivity.showDialog(block: T.() -> Unit): T =
+inline fun <reified T : BaseDialogFragment> AppCompatActivity.showDialog(block: T.() -> Unit): T =
     supportFragmentManager.showDialog(block)
 
-inline fun <reified T> AppCompatActivity.showDialog(): T =
+inline fun <reified T : BaseDialogFragment> AppCompatActivity.showDialog(): T =
     supportFragmentManager.showDialog()
 
-inline fun <reified T> Fragment.showDialog(block: T.() -> Unit): T? =
+inline fun <reified T:BaseDialogFragment> Fragment.showDialog(block: T.() -> Unit): T? =
     fragmentManager?.showDialog(block)
 
-inline fun <reified T> Fragment.showDialog(): T? =
+inline fun <reified T:BaseDialogFragment> Fragment.showDialog(): T? =
     fragmentManager?.showDialog()
 

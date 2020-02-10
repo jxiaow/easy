@@ -31,7 +31,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly deps.appCompat
     testImplementation deps.junit
-    androidTestImplementation deps.testRunner
+    androidTestImplementation deps.testJunit
     androidTestImplementation deps.espressoCore
     compileOnly deps.stdlibJdk
     compileOnly deps.immersionbar
