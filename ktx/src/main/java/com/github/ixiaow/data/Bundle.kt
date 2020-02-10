@@ -2,9 +2,10 @@ package com.github.ixiaow.data
 
 import android.os.Bundle
 
-fun bundlesOf(vararg pairs: Pair<String, Any>) = Bundle(pairs.size).apply {
+fun bundlesOf(vararg pairs: Pair<String, Any?>) = Bundle(pairs.size).apply {
     for ((key, value) in pairs) {
         when (value) {
+            null -> putString(key, null)
             is String -> putString(key, value)
             is Int -> putInt(key, value)
             is Long -> putLong(key, value)
