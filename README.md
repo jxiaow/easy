@@ -28,7 +28,7 @@ allprojects {
 dependencies {
     // 协程扩展
     implementation 'com.github.ixiaow.easy:coroutine:x.y.z'
-    implementation &#39;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1&#39;
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
     // helper帮助类
     implementation 'com.github.ixiaow.easy:helper:x.y.z'
     // 常用扩展工具类
