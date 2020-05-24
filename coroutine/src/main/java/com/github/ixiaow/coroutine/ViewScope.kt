@@ -1,9 +1,11 @@
 package com.github.ixiaow.coroutine
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
+
+const val TAG = "DisposeCoroutine"
+
+
+var coroutineDebug: Boolean = true
 
 /**
  * 协程接口标志， 如果需要使用viewScope，则需要实现此接口
@@ -24,33 +26,30 @@ val ICoroutineScope.viewScope: DisposeCoroutineScope by DisposeCoroutineScopePro
 /**
  * 开启一个ui协程
  */
-inline fun <T> ICoroutineScope.launchUI(crossinline block: suspend CoroutineScope.() -> T) {
+inline fun <T> ICoroutineScope.launchUI(crossinline block: suspend CoroutineScope.() -> T): Job =
     viewScope.launch {
         block()
     }
-}
 
 /**
  * 开启一个io 协程
  */
-inline fun <T> ICoroutineScope.launchIO(crossinline block: suspend CoroutineScope.() -> T) {
+inline fun <T> ICoroutineScope.launchIO(crossinline block: suspend CoroutineScope.() -> T): Job =
     viewScope.launch {
         withIO {
             block()
         }
     }
-}
 
 /**
- * 开启一个后台 协程
+ * 开启一个work 协程
  */
-inline fun <T> ICoroutineScope.launchWork(crossinline block: suspend CoroutineScope.() -> T) {
+inline fun <T> ICoroutineScope.launchWork(crossinline block: suspend CoroutineScope.() -> T): Job =
     viewScope.launch {
         withWork {
             block()
         }
     }
-}
 
 /**
  * 切换到work协程

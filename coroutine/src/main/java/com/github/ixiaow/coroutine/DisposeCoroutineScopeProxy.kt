@@ -1,5 +1,6 @@
 package com.github.ixiaow.coroutine
 
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.isActive
@@ -94,6 +95,12 @@ class DisposeCoroutineScopeProxy(
             }.keys.forEach { key ->
                 coroutineTags.remove(key)
             }
+        }
+    }
+
+    private fun debug(msg: String) {
+        if (coroutineDebug) {
+            Log.d(TAG, msg)
         }
     }
 }

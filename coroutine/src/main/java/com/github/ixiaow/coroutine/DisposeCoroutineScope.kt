@@ -1,5 +1,6 @@
 package com.github.ixiaow.coroutine
 
+import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -17,6 +18,7 @@ interface DisposeCoroutineScope : CoroutineScope {
      * 当前协程的唯一标识
      */
     val coroutineId: String
+
     /**
      * 当前协程是否被销毁
      */
@@ -70,4 +72,9 @@ class DisposeCoroutineScopeImpl(
         owner.lifecycle.addObserver(this)
     }
 
+    private fun debug(msg: String) {
+        if (coroutineDebug) {
+            Log.d(TAG, msg)
+        }
+    }
 }
