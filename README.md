@@ -4,15 +4,13 @@
 
 目前已经包含有：
 
-| 包含的模块 | 说明                       |
-| ---------- | -------------------------- |
-| 协程扩展  | [coroutine](https://github.com/ixiaow/easy/tree/master/coroutine/README.md) |
-| ktx 扩展  | [ktx](https://github.com/ixiaow/easy/tree/master/ktx/README.md) |
-| helper帮助类  | [helper](https://github.com/ixiaow/easy/tree/master/hepler/README.md) |
+| 包含的模块     | 说明                                                                          |
+| --------- | --------------------------------------------------------------------------- |
+| 协程扩展      | [coroutine](https://github.com/ixiaow/easy/tree/master/coroutine/README.md) |
+| ktx 扩展    | [ktx](https://github.com/ixiaow/easy/tree/master/ktx/README.md)             |
+| helper帮助类 | [helper](https://github.com/ixiaow/easy/tree/master/hepler/README.md)       |
 
 ## 用法
-
-### Step 1
 
 在根`build.gradle`中添加：
 
@@ -30,6 +28,7 @@ allprojects {
 dependencies {
     // 协程扩展
     implementation 'com.github.ixiaow.easy:coroutine:x.y.z'
+    implementation &#39;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1&#39;
     // helper帮助类
     implementation 'com.github.ixiaow.easy:helper:x.y.z'
     // 常用扩展工具类
@@ -38,9 +37,11 @@ dependencies {
     implementation 'com.gyf.immersionbar:immersionbar:2.3.2-beta01'
 }
 ```
+
 (请替换 x. y .z 为最新的版本号: ![](https://jitpack.io/v/ixiaow/easy.svg) )
 
+## 注意
 
-## 如果您觉得还可以欢迎[Star](https://github.com/ixiaow/easy) ,谢谢！
+如果您的项目不支持`AndroidX`，请使用 **2.0.0**版本。
 
-
+## 如果方便了您的使用，欢迎[Star](https://github.com/ixiaow/easy) 。
