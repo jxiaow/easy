@@ -28,7 +28,8 @@ var View.invisible: Boolean
  * 解析资源布局
  */
 fun View.inflater(
-    @LayoutRes id: Int, root: ViewGroup?,
+    @LayoutRes id: Int,
+    root: ViewGroup?,
     attachToRoot: Boolean = root != null
 ): View {
     return LayoutInflater.from(context).inflate(id, root, attachToRoot)

@@ -18,7 +18,8 @@ import android.view.ViewGroup
  * 解析资源布局
  */
 fun Context.inflater(
-    @LayoutRes id: Int, root: ViewGroup? = null,
+    @LayoutRes id: Int,
+    root: ViewGroup? = null,
     attachToRoot: Boolean = root != null
 ): View {
     return LayoutInflater.from(this).inflate(id, root, attachToRoot)
@@ -29,6 +30,9 @@ fun Context.inflater(
  */
 fun Context.color(@ColorRes id: Int): Int = ContextCompat.getColor(this, id)
 
+/**
+ * 获取drawable
+ */
 fun Context.drawable(@DrawableRes id: Int): Drawable? {
     return ContextCompat.getDrawable(this, id)
 }

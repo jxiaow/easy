@@ -2,6 +2,9 @@ package com.github.ixiaow.data
 
 import android.os.Bundle
 
+/**
+ * 快速创建bundle
+ */
 fun bundlesOf(vararg pairs: Pair<String, Any?>) = Bundle(pairs.size).apply {
     for ((key, value) in pairs) {
         when (value) {
