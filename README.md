@@ -33,8 +33,6 @@ dependencies {
     implementation 'com.github.ixiaow.easy:helper:x.y.z'
     // 常用扩展工具类
     implementation 'com.github.ixiaow.easy:ktx:x.y.z'
-    // 如果使用了[StatusBar]类，需要依赖状态栏管理类
-    implementation 'com.gyf.immersionbar:immersionbar:2.3.2-beta01'
 }
 ```
 

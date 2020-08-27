@@ -34,6 +34,5 @@ dependencies {
     androidTestImplementation deps.testJunit
     androidTestImplementation deps.espressoCore
     compileOnly deps.stdlibJdk
-    compileOnly deps.immersionbar
 //    compileOnly deps.coroutine_core
 }
